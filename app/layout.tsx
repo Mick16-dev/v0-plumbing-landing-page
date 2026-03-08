@@ -24,8 +24,8 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: 'Rohr-Blitz | Master Expert Plumbing Diagnosis & Repair',
-  description: 'Experience the future of home maintenance. Instant visual diagnosis, 24/7 premium emergency service, and transparent estimates in seconds.',
-  keywords: ['plumbing', 'master diagnosis', 'emergency plumber', 'Germany', 'home repair', 'Rohr-Blitz'],
+  description: 'Experience the future of home maintenance. Instant visual diagnosis, 24/7 premium emergency service, and transparent estimates in seconds with Rohr-Blitz Master Technicians.',
+  keywords: ['plumbing', 'master diagnosis', 'emergency plumber', 'Germany', 'home repair', 'Rohr-Blitz', 'leak detection', 'clogged drain repair', 'pipe burst service', 'Meisterbetrieb'],
   authors: [{ name: 'Rohr-Blitz' }],
   openGraph: {
     title: 'Rohr-Blitz | Expert Master Plumbing',
@@ -52,6 +52,64 @@ export const metadata: Metadata = {
   },
 }
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "PlumbingService",
+  "name": "Rohr-Blitz",
+  "image": "https://rohr-blitz.de/og-image.jpg",
+  "@id": "https://rohr-blitz.de",
+  "url": "https://rohr-blitz.de",
+  "telephone": "+49123456789",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Musterstraße 1",
+    "addressLocality": "Berlin",
+    "postalCode": "10115",
+    "addressCountry": "DE"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 52.5200,
+    "longitude": 13.4050
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+    ],
+    "opens": "00:00",
+    "closes": "23:59"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Berlin" },
+    { "@type": "City", "name": "Munich" },
+    { "@type": "City", "name": "Hamburg" },
+    { "@type": "City", "name": "Frankfurt" },
+    { "@type": "City", "name": "Cologne" }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Plumbing Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Emergency Leak Repair"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Pipe Diagnostic Analysis"
+        }
+      }
+    ]
+  }
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -59,6 +117,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" className={`${bricolage.variable} ${outfit.variable} scroll-smooth`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="font-body antialiased selection:bg-secondary/30 selection:text-secondary-foreground overflow-x-hidden">
         <LanguageProvider>
           {children}
