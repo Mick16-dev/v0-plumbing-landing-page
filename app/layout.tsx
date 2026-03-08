@@ -23,7 +23,6 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://rohr-blitz.de'),
   title: {
     default: 'Rohr-Blitz | Master Expert Plumbing Diagnosis & Repair',
     template: '%s | Rohr-Blitz'
@@ -48,7 +47,7 @@ export const metadata: Metadata = {
         url: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200&h=630',
         width: 1200,
         height: 630,
-        alt: 'Rohr-Blitz Master Expert Engineering - High-Fidelity Plumbing Diagnosis',
+        alt: 'Rohr-Blitz Master Expert Engineering',
       },
     ],
     locale: 'de_DE',
@@ -87,7 +86,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "PlumbingService",
   "name": "Rohr-Blitz",
-  "image": "https://rohr-blitz.de/og-image.jpg",
+  "image": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200&h=630",
   "@id": "https://rohr-blitz.de",
   "url": "https://rohr-blitz.de",
   "telephone": "+49123456789",
