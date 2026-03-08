@@ -1,6 +1,6 @@
 'use client'
 
-import { Phone, Droplets } from 'lucide-react'
+import { Phone } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '@/app/context/language-context'
 import { Button } from '@/components/ui/button'
