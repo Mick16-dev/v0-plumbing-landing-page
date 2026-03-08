@@ -18,8 +18,8 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Hero
     'hero.badge': 'Master Expert Diagnosis',
-    'hero.title': 'Get Your Plumbing Issue Diagnosed in Minutes',
-    'hero.subtitle': 'Upload a photo of your problem, answer a few questions, and receive an instant estimate from our certified master technicians.',
+    'hero.title': 'Bespoke Plumbing Diagnosis & Expert Engineering',
+    'hero.subtitle': 'Experience the future of home maintenance. Instant visual diagnostic analysis by certified German Master Technicians. Transparent, elite, and available 24/7.',
     
     // Diagnostic Funnel
     'funnel.step1.title': 'Upload Photo',
@@ -107,14 +107,14 @@ const translations: Record<Language, Record<string, string>> = {
     'features.howItWorks': 'How It Works',
     'features.learnMore': 'Learn more',
     'features.aiDeepDive.title': 'From Photo to Fixed in 4 Simple Steps',
-    'features.aiDeepDive.step1.title': 'Snap a Photo',
-    'features.aiDeepDive.step1.desc': 'Take a clear photo of the leak, clog, or damaged fixture. Our system works with any smartphone camera.',
-    'features.aiDeepDive.step2.title': 'Master Analysis',
-    'features.aiDeepDive.step2.desc': 'Our master plumbers analyze the image, cross-referencing thousands of successful repairs to identify the issue and severity.',
+    'features.aiDeepDive.step1.title': 'Visual Capture',
+    'features.aiDeepDive.step1.desc': 'Capture a high-fidelity image of the disruption. Our expert algorithms process the blueprint of the issue instantly.',
+    'features.aiDeepDive.step2.title': 'Master Validation',
+    'features.aiDeepDive.step2.desc': 'Our Master Technicians validate the diagnostic data, ensuring engineering-grade accuracy and localized compliance.',
     'features.aiDeepDive.step3.title': 'Detailed Report',
     'features.aiDeepDive.step3.desc': 'Receive a breakdown of the problem, required parts, estimated repair time, and cost range.',
-    'features.aiDeepDive.step4.title': 'Get It Fixed',
-    'features.aiDeepDive.step4.desc': 'Book a certified technician who arrives prepared with the right tools and parts, or tackle it yourself with our guidance.',
+    'features.aiDeepDive.step4.title': 'Elite Resolution',
+    'features.aiDeepDive.step4.desc': 'Deploy a certified Master Technician who arrives fully equipped to solve the disruption with surgical precision.',
     
     // Results Stats
     'features.results.title': 'Real Results, Real Savings',
@@ -153,8 +153,8 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Hero
     'hero.badge': 'Meister-Diagnose',
-    'hero.title': 'Ihr Sanitärproblem in Minuten diagnostiziert',
-    'hero.subtitle': 'Laden Sie ein Foto Ihres Problems hoch, beantworten Sie einige Fragen und erhalten Sie sofort einen Kostenvoranschlag von unseren Meistern.',
+    'hero.title': 'Meisterhafte Präzision & Digitale Sanitär-Diagnostik',
+    'hero.subtitle': 'Erleben Sie die Zukunft der Haustechnik. Visuelle Sofort-Analyse durch zertifizierte deutsche Handwerksmeister. Transparent, exzellent und 24/7 verfügbar.',
     
     // Diagnostic Funnel
     'funnel.step1.title': 'Foto hochladen',
@@ -289,7 +289,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>('en')
 
   useEffect(() => {
-    const stored = localStorage.getItem('marcus-plumbing-lang') as Language | null
+    const stored = localStorage.getItem('rohr-blitz-lang') as Language | null
     if (stored && (stored === 'en' || stored === 'de')) {
       setLanguageState(stored)
     } else {
@@ -302,7 +302,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang)
-    localStorage.setItem('marcus-plumbing-lang', lang)
+    localStorage.setItem('rohr-blitz-lang', lang)
   }
 
   const t = (key: string): string => {
