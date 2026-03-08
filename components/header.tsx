@@ -4,6 +4,7 @@ import { Phone, Droplets } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '@/app/context/language-context'
 import { Button } from '@/components/ui/button'
+import { Magnetic } from '@/components/ui/magnetic'
 import { cn } from '@/lib/utils'
 
 interface HeaderProps {
@@ -64,24 +65,26 @@ export function Header({ onEmergencyClick }: HeaderProps) {
             </div>
 
             {/* Emergency CTA - CTA #2 */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button 
-                onClick={onEmergencyClick}
-                className="bg-destructive text-destructive-foreground hover:bg-destructive/90 font-bold px-6 py-6 rounded-2xl shadow-xl shadow-destructive/20 relative group overflow-hidden"
+            <Magnetic strength={0.3}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-                <span className="relative flex h-3 w-3 mr-3">
-                  <span className="animate-pulse-premium absolute inline-flex h-full w-full rounded-full bg-red-400/50"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
-                </span>
-                <Phone className="w-5 h-5 mr-2" />
-                <span className="hidden sm:inline uppercase tracking-wider">{t('header.emergency')}</span>
-                <span className="sm:hidden">24/7</span>
-              </Button>
-            </motion.div>
+                <Button 
+                  onClick={onEmergencyClick}
+                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90 font-bold px-6 py-6 rounded-2xl shadow-xl shadow-destructive/20 relative group overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                  <span className="relative flex h-3 w-3 mr-3">
+                    <span className="animate-pulse-premium absolute inline-flex h-full w-full rounded-full bg-red-400/50"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+                  </span>
+                  <Phone className="w-5 h-5 mr-2" />
+                  <span className="hidden sm:inline uppercase tracking-wider">{t('header.emergency')}</span>
+                  <span className="sm:hidden">24/7</span>
+                </Button>
+              </motion.div>
+            </Magnetic>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@
 import { useLanguage } from '@/app/context/language-context'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
+import { Magnetic } from '@/components/ui/magnetic'
 import { Check, ShieldCheck, Clock, Crown, MapPin } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -181,18 +182,20 @@ export function PricingSection({ onCtaClick }: PricingSectionProps) {
                 ))}
               </ul>
               
-              <Button 
-                onClick={onCtaClick}
-                className={cn(
-                  "w-full h-16 rounded-2xl font-black uppercase tracking-[0.2em] shadow-xl transition-all active:scale-95 group relative overflow-hidden",
-                  plan.popular 
-                    ? "bg-secondary text-white hover:bg-secondary/90 shadow-secondary/20" 
-                    : "bg-primary text-primary-foreground hover:bg-primary/90 shadow-primary/10"
-                )}
-              >
-                <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-                <span className="relative z-10">{t('pricing.cta')}</span>
-              </Button>
+              <Magnetic strength={0.2} className="w-full">
+                <Button 
+                  onClick={onCtaClick}
+                  className={cn(
+                    "w-full h-16 rounded-2xl font-black uppercase tracking-[0.2em] shadow-xl transition-all active:scale-95 group relative overflow-hidden",
+                    plan.popular 
+                      ? "bg-secondary text-white hover:bg-secondary/90 shadow-secondary/20" 
+                      : "bg-primary text-primary-foreground hover:bg-primary/90 shadow-primary/10"
+                  )}
+                >
+                  <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                  <span className="relative z-10">{t('pricing.cta')}</span>
+                </Button>
+              </Magnetic>
             </motion.div>
           ))}
         </motion.div>

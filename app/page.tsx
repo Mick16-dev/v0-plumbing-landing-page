@@ -11,6 +11,7 @@ import { PricingSection } from '@/components/pricing-section'
 import { FaqSection } from '@/components/faq-section'
 import { Footer } from '@/components/footer'
 import { JoinModal } from '@/components/join-modal'
+import { StackingSection } from '@/components/ui/stacking-section'
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -21,13 +22,33 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-background">
       <Header onEmergencyClick={openModal} />
+      
       <HeroSection onCtaClick={openModal} />
-      <TrustBadges />
-      <FeaturesSection onCtaClick={openModal} />
-      <BeforeAfterGallery onCtaClick={openModal} />
-      <TestimonialsSection />
-      <PricingSection onCtaClick={openModal} />
-      <FaqSection />
+      
+      <StackingSection index={1}>
+        <TrustBadges />
+      </StackingSection>
+      
+      <StackingSection index={2}>
+        <FeaturesSection onCtaClick={openModal} />
+      </StackingSection>
+      
+      <StackingSection index={3}>
+        <BeforeAfterGallery onCtaClick={openModal} />
+      </StackingSection>
+      
+      <StackingSection index={4}>
+        <TestimonialsSection />
+      </StackingSection>
+      
+      <StackingSection index={5}>
+        <PricingSection onCtaClick={openModal} />
+      </StackingSection>
+      
+      <StackingSection index={6}>
+        <FaqSection />
+      </StackingSection>
+      
       <Footer onCtaClick={openModal} />
       <JoinModal isOpen={isModalOpen} onClose={closeModal} />
     </main>

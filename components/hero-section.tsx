@@ -5,6 +5,7 @@ import { Upload, Droplet, CircleOff, Wrench, Plus, CheckCircle, Clock, Loader2, 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '@/app/context/language-context'
 import { Button } from '@/components/ui/button'
+import { Magnetic } from '@/components/ui/magnetic'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -367,12 +368,14 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
                             <p className="font-black text-3xl uppercase italic">{severityLabels[formData.severity - 1]}</p>
                           </motion.div>
 
-                          <Button 
-                            onClick={handleSeverityContinue}
-                            className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-black uppercase tracking-widest py-8 rounded-2xl text-lg shadow-2xl shadow-primary/20"
-                          >
-                            Calculate Assessment
-                          </Button>
+                          <Magnetic strength={0.2} className="w-full">
+                            <Button 
+                              onClick={handleSeverityContinue}
+                              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-black uppercase tracking-widest py-8 rounded-2xl text-lg shadow-2xl shadow-primary/20"
+                            >
+                              Calculate Assessment
+                            </Button>
+                          </Magnetic>
                         </div>
                       </div>
                     )}
@@ -401,13 +404,15 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
                             </div>
                           ))}
 
-                          <Button 
-                            disabled={isSubmitting}
-                            className="w-full bg-secondary text-white hover:bg-secondary/90 font-black uppercase tracking-[0.2em] h-16 rounded-2xl mt-6 shadow-xl shadow-secondary/20 relative group overflow-hidden"
-                          >
-                            <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-                            {isSubmitting ? <Loader2 className="w-6 h-6 animate-spin" /> : t('funnel.cta')}
-                          </Button>
+                          <Magnetic strength={0.2} className="w-full">
+                            <Button 
+                              disabled={isSubmitting}
+                              className="w-full bg-secondary text-white hover:bg-secondary/90 font-black uppercase tracking-[0.2em] h-16 rounded-2xl mt-6 shadow-xl shadow-secondary/20 relative group overflow-hidden"
+                            >
+                              <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                              {isSubmitting ? <Loader2 className="w-6 h-6 animate-spin" /> : t('funnel.cta')}
+                            </Button>
+                          </Magnetic>
                         </form>
                       </div>
                     )}

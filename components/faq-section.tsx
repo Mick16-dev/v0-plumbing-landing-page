@@ -8,6 +8,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 import { Button } from '@/components/ui/button'
+import { Magnetic } from '@/components/ui/magnetic'
 import { motion } from 'framer-motion'
 import { HelpCircle, Sparkles, MessageSquare } from 'lucide-react'
 
@@ -140,9 +141,11 @@ export function FaqSection() {
            <p className="text-muted-foreground font-medium mb-8 max-w-lg">
               Our support team is available 24/7 to assist with ANY plumbing emergency or technical query.
            </p>
-           <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-black uppercase tracking-[0.2em] h-16 px-10 rounded-2xl shadow-xl transition-all active:scale-95">
-              Request VIP Support
-           </Button>
+           <Magnetic strength={0.2}>
+             <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-black uppercase tracking-[0.2em] h-16 px-10 rounded-2xl shadow-xl transition-all active:scale-95">
+                Request VIP Support
+             </Button>
+           </Magnetic>
         </motion.div>
       </div>
     </section>

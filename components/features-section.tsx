@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '@/app/context/language-context'
 import { Button } from '@/components/ui/button'
+import { Magnetic } from '@/components/ui/magnetic'
 import { 
   PiggyBank, 
   Shield, 
@@ -216,12 +217,14 @@ export function FeaturesSection({ onCtaClick }: FeaturesSectionProps) {
                     ))}
                  </div>
 
-                 <Button 
-                    onClick={onCtaClick}
-                    className="w-full mt-12 bg-secondary text-white hover:bg-secondary/90 font-black uppercase tracking-[0.2em] py-8 rounded-2xl text-lg shadow-xl shadow-secondary/20 transition-all active:scale-95"
-                 >
-                    {t('features.cta')}
-                 </Button>
+                 <Magnetic strength={0.2} className="w-full">
+                   <Button 
+                      onClick={onCtaClick}
+                      className="w-full mt-12 bg-secondary text-white hover:bg-secondary/90 font-black uppercase tracking-[0.2em] py-8 rounded-2xl text-lg shadow-xl shadow-secondary/20 transition-all active:scale-95"
+                   >
+                      {t('features.cta')}
+                   </Button>
+                 </Magnetic>
               </div>
             </div>
           </motion.div>
