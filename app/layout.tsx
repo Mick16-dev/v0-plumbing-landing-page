@@ -45,10 +45,10 @@ export const metadata: Metadata = {
     siteName: 'Rohr-Blitz',
     images: [
       {
-        url: '/master-1.png', // Using the Master Expert as a temporary high-authority preview
+        url: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200&h=630',
         width: 1200,
         height: 630,
-        alt: 'Rohr-Blitz Master Expert Diagnosis',
+        alt: 'Rohr-Blitz Master Expert Engineering - High-Fidelity Plumbing Diagnosis',
       },
     ],
     locale: 'de_DE',
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Rohr-Blitz | Master Expert Plumbing',
     description: 'Bespoke Plumbing Diagnosis & Expert Engineering. Instant estimates, 24/7 service.',
-    images: ['/master-1.png'],
+    images: ['https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200&h=630'],
     creator: '@rohrblitz',
   },
   icons: {
