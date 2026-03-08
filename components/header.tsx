@@ -88,5 +88,3 @@ export function Header({ onEmergencyClick }: HeaderProps) {
     </motion.header>
   )
 }
-  )
-}
