@@ -7,16 +7,11 @@ import { useLanguage } from '@/app/context/language-context'
 import { Button } from '@/components/ui/button'
 import { Magnetic } from '@/components/ui/magnetic'
 import {
-  PiggyBank,
-  Shield,
+  Droplet,
   Wrench,
   CheckCircle2,
-  Camera,
-  FileText,
   Timer,
-  ArrowRight,
-  ShieldCheck,
-  Search
+  ArrowRight
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -27,32 +22,32 @@ interface FeaturesSectionProps {
 const pillars = [
   {
     id: 'expert-diagnosis',
-    icon: Search,
-    color: 'text-secondary',
-    bg: 'bg-secondary/10',
-    border: 'border-secondary/20'
+    icon: Droplet,
+    color: 'text-primary',
+    bg: 'bg-primary/10',
+    border: 'border-primary/30'
   },
   {
     id: 'time-cost',
-    icon: PiggyBank,
-    color: 'text-success',
-    bg: 'bg-success/10',
-    border: 'border-success/20'
+    icon: Wrench,
+    color: 'text-primary',
+    bg: 'bg-primary/10',
+    border: 'border-primary/30'
   },
   {
     id: 'reliability',
-    icon: Shield,
+    icon: Timer,
     color: 'text-primary',
     bg: 'bg-primary/10',
-    border: 'border-primary/20'
+    border: 'border-primary/30'
   },
 ]
 
 const diagnosisSteps = [
-  { icon: Camera, step: 1 },
-  { icon: Search, step: 2 },
-  { icon: FileText, step: 3 },
-  { icon: Wrench, step: 4 },
+  { step: 1 },
+  { step: 2 },
+  { step: 3 },
+  { step: 4 },
 ]
 
 export function FeaturesSection({ onCtaClick }: FeaturesSectionProps) {
@@ -83,8 +78,7 @@ export function FeaturesSection({ onCtaClick }: FeaturesSectionProps) {
           viewport={{ once: true }}
           className="text-center mb-24"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-xs font-black rounded-xl uppercase tracking-[0.2em] mb-6">
-            <ShieldCheck className="w-4 h-4" />
+          <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-xs font-semibold rounded-xl uppercase tracking-[0.15em] mb-6">
             {t('features.badge')}
           </span>
           <h2 className="text-4xl sm:text-6xl font-black text-foreground mb-6 tracking-tighter italic uppercase">
@@ -203,9 +197,9 @@ export function FeaturesSection({ onCtaClick }: FeaturesSectionProps) {
                       transition={{ delay: idx * 0.15 }}
                       className="flex gap-8 relative z-10"
                     >
-                      <div className="w-10 h-10 rounded-full bg-card flex items-center justify-center shrink-0 border border-border">
-                        <step.icon className="w-5 h-5 text-secondary" />
-                      </div>
+                  <div className="w-10 h-10 rounded-full bg-card flex items-center justify-center shrink-0 border border-border">
+                    <Wrench className="w-5 h-5 text-secondary" />
+                  </div>
                       <div>
                         <p className="text-xs font-semibold text-secondary uppercase tracking-[0.15em] mb-1">
                           Step {step.step}

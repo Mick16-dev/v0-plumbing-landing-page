@@ -2,9 +2,7 @@
 
 import { useLanguage } from '@/app/context/language-context'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Star, CheckCircle, Play, Quote, X, ShieldCheck, UserCheck } from 'lucide-react'
-import { useState } from 'react'
-import { cn } from '@/lib/utils'
+import { Star, CheckCircle, UserCheck } from 'lucide-react'
 
 const testimonials = [
   {
@@ -72,7 +70,6 @@ function StarRating({ rating }: { rating: number }) {
 
 export function TestimonialsSection() {
   const { language, t } = useLanguage()
-  const [videoModal, setVideoModal] = useState<number | null>(null)
 
   const container = {
     hidden: { opacity: 0 },
@@ -182,7 +179,6 @@ export function TestimonialsSection() {
           ))}
         </motion.div>
 
-        {/* Removed cinematic video modal to keep things simpler and less \"designed\" */}
       </div>
     </section>
   )

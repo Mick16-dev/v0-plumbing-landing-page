@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { Header } from '@/components/header'
 import { HeroSection } from '@/components/hero-section'
 import { InstantDiagnosisSection } from '@/components/instant-diagnosis-section'
+import { AboutSection } from '@/components/about-section'
+import { ServiceAreaSection } from '@/components/service-area-section'
 import { BeforeAfterGallery } from '@/components/before-after-gallery'
 import { TestimonialsSection } from '@/components/testimonials-section'
 import { TrustBadges } from '@/components/trust-badges'
@@ -56,6 +58,14 @@ export default function Home() {
       </StackingSection>
       
       <StackingSection index={8}>
+        <AboutSection />
+      </StackingSection>
+
+      <StackingSection index={9}>
+        <ServiceAreaSection />
+      </StackingSection>
+
+      <StackingSection index={10}>
         <FaqSection />
       </StackingSection>
       
