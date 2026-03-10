@@ -121,7 +121,7 @@ export function Footer({ onCtaClick }: FooterProps) {
       {/* Bottom Bar */}
       <div className="py-12 px-4 border-t border-white/5 bg-black/20 relative z-10">
         <div className="max-w-7xl mx-auto flex flex-col md:row items-center justify-between gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-white/40">
-          <p>© 2026 Rohr-Blitz. Designed for Human-Like Excellence.</p>
+          <p>© 2026 Rohr-Blitz. Crafted for Master Excellence.</p>
           <div className="flex gap-8">
             <a href="#" className="hover:text-white transition-colors flex items-center gap-2">
               <Twitter className="w-4 h-4" /> Twitter
