@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Header } from '@/components/header'
 import { HeroSection } from '@/components/hero-section'
+import { InstantDiagnosisSection } from '@/components/instant-diagnosis-section'
 import { BeforeAfterGallery } from '@/components/before-after-gallery'
 import { TestimonialsSection } from '@/components/testimonials-section'
 import { TrustBadges } from '@/components/trust-badges'
@@ -27,30 +28,34 @@ export default function Home() {
       <HeroSection onCtaClick={openModal} />
       
       <StackingSection index={1}>
-        <TrustBadges />
+        <InstantDiagnosisSection />
       </StackingSection>
 
       <StackingSection index={2}>
-        <MasterExpertSection />
+        <TrustBadges />
       </StackingSection>
       
       <StackingSection index={3}>
-        <FeaturesSection onCtaClick={openModal} />
+        <MasterExpertSection />
       </StackingSection>
       
       <StackingSection index={4}>
-        <BeforeAfterGallery onCtaClick={openModal} />
+        <FeaturesSection onCtaClick={openModal} />
       </StackingSection>
       
       <StackingSection index={5}>
-        <TestimonialsSection />
+        <BeforeAfterGallery onCtaClick={openModal} />
       </StackingSection>
       
       <StackingSection index={6}>
-        <PricingSection onCtaClick={openModal} />
+        <TestimonialsSection />
       </StackingSection>
       
       <StackingSection index={7}>
+        <PricingSection onCtaClick={openModal} />
+      </StackingSection>
+      
+      <StackingSection index={8}>
         <FaqSection />
       </StackingSection>
       

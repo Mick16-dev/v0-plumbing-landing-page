@@ -204,7 +204,10 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="flex-1 w-full max-w-lg"
         >
-          <Card className="overflow-hidden rounded-2xl border border-border shadow-md">
+          <Card
+            id="request-diagnosis"
+            className="overflow-hidden rounded-2xl border border-border shadow-md"
+          >
             <CardContent className="p-6 sm:p-8">
               <h2 className="text-2xl font-semibold text-foreground mb-4">
                 {t('form.simpleTitle') || 'Request a call back'}
