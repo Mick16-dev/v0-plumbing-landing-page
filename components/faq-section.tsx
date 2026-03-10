@@ -14,6 +14,12 @@ import { HelpCircle, MessageSquare } from 'lucide-react'
 
 const faqs = [
   {
+    questionEn: 'Can I send a photo in advance?',
+    questionDe: 'Kann ich Ihnen vorab ein Foto schicken?',
+    answerEn: 'Yes. A photo and a short description help us to better estimate the effort and to bring the right parts. The final price is always confirmed on site after we have seen everything in person.',
+    answerDe: 'Ja. Ein Foto und eine kurze Beschreibung helfen uns, den Aufwand besser einzuschätzen und die richtigen Teile mitzubringen. Der endgültige Preis wird immer vor Ort bestätigt, nachdem wir uns alles angeschaut haben.'
+  },
+  {
     questionEn: 'How fast can you come in an emergency?',
     questionDe: 'Wie schnell kommen Sie im Notfall?',
     answerEn: 'In most cases in Berlin and the surrounding area we can be with you on the same day, often within a few hours. At night we first check by phone what is urgent and what can wait until the morning.',

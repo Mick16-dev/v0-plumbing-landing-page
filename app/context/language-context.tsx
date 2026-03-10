@@ -19,7 +19,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Hero
     'hero.badge': 'Local emergency plumber',
     'hero.title': 'Burst pipe? Blocked drain? We fix it today.',
-    'hero.subtitle': 'A small team of experienced plumbers for Berlin and surrounding areas. We arrive quickly, give clear prices before we start, and leave your home clean again.',
+    'hero.subtitle': 'A small team of experienced plumbers for Berlin and surrounding areas. We arrive quickly, give clear prices before we start, and leave your home clean again. If you send us a photo, we can usually give you a first estimate before we arrive.',
 
     // Diagnostic Funnel
     'funnel.step1.title': 'Upload Photo',
@@ -52,6 +52,9 @@ const translations: Record<Language, Record<string, string>> = {
     'form.phone': 'Phone Number',
     'form.email': 'Email Address',
     'form.address': 'Address',
+    'form.message': 'Describe the problem',
+    'form.photoLabel': 'Photo of the problem (optional)',
+    'form.photoHelp': 'A quick photo helps us give you a better first estimate.',
 
     // Gallery
     'gallery.title': 'Before & After Transformations',
@@ -169,7 +172,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Hero
     'hero.badge': 'Lokaler Sanitär-Notdienst',
     'hero.title': 'Rohrbruch? Toilette verstopft? Wir kommen heute noch.',
-    'hero.subtitle': 'Kleines eingespieltes Team aus erfahrenen Installateuren in Berlin und Umgebung. Wir kommen schnell, sprechen Preise offen an und hinterlassen alles sauber.',
+    'hero.subtitle': 'Kleines eingespieltes Team aus erfahrenen Installateuren in Berlin und Umgebung. Wir kommen schnell, sprechen Preise offen an und hinterlassen alles sauber. Wenn Sie uns ein Foto schicken, können wir meist schon vorab eine erste Einschätzung geben.',
 
     // Diagnostic Funnel
     'funnel.step1.title': 'Foto hochladen',
@@ -202,6 +205,9 @@ const translations: Record<Language, Record<string, string>> = {
     'form.phone': 'Telefonnummer',
     'form.email': 'E-Mail-Adresse',
     'form.address': 'Adresse',
+    'form.message': 'Beschreiben Sie das Problem',
+    'form.photoLabel': 'Foto vom Problem (optional)',
+    'form.photoHelp': 'Ein schnelles Foto hilft uns, die Situation vorab besser einzuschätzen.',
 
     // Gallery
     'gallery.title': 'Vorher & Nachher',

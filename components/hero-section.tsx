@@ -23,6 +23,7 @@ interface FormData {
   phone: string
   email: string
   address: string
+  message: string
 }
 
 interface EstimateRange {
@@ -65,7 +66,8 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
     name: '',
     phone: '',
     email: '',
-    address: ''
+    address: '',
+    message: ''
   })
 
   const handleImageDrop = useCallback((e: React.DragEvent<HTMLDivElement>) => {
@@ -231,16 +233,29 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
                 ))}
 
                 <div className="space-y-1">
-                  <Label htmlFor="message">{t('form.message') || 'Describe the problem'}</Label>
+                  <Label htmlFor="message">{t('form.message')}</Label>
                   <textarea
                     id="message"
                     rows={3}
-                    value={formData as any && (formData as any).message}
+                    value={formData.message}
                     onChange={(e) =>
-                      setFormData(prev => ({ ...(prev as any), message: e.target.value }))
+                      setFormData(prev => ({ ...prev, message: e.target.value }))
                     }
                     className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                   />
+                </div>
+
+                <div className="space-y-1">
+                  <Label htmlFor="photo">{t('form.photoLabel')}</Label>
+                  <Input
+                    id="photo"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageSelect}
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    {t('form.photoHelp')}
+                  </p>
                 </div>
 
                 <Button
