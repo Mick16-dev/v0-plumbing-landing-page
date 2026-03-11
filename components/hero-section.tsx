@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import { Upload, Droplet, CircleOff, Wrench, Plus, CheckCircle, Clock, Loader2, ShieldCheck, MapPin } from 'lucide-react'
+import { Upload, Droplet, CircleOff, Wrench, Plus, CheckCircle, Loader2, MapPin } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '@/app/context/language-context'
 import { Button } from '@/components/ui/button'
@@ -170,9 +170,8 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-xs font-black bg-primary text-primary-foreground rounded-xl uppercase tracking-[0.2em] shadow-lg shadow-primary/20"
+            className="inline-flex items-center px-5 py-2 mb-6 text-xs font-black bg-primary text-primary-foreground rounded-full uppercase tracking-[0.2em] shadow-lg shadow-primary/20"
           >
-            <ShieldCheck className="w-4 h-4 text-secondary" />
             {t('hero.badge')}
           </motion.span>
 
@@ -184,19 +183,13 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
             {t('hero.subtitle')}
           </p>
 
-          <div className="flex flex-wrap gap-6">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-success/10 rounded-full flex items-center justify-center">
-                <ShieldCheck className="w-6 h-6 text-success" />
-              </div>
-              <span className="text-sm font-bold uppercase tracking-wider text-foreground">Verified Experts</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center">
-                <Clock className="w-6 h-6 text-secondary" />
-              </div>
-              <span className="text-sm font-bold uppercase tracking-wider text-foreground">15m Response</span>
-            </div>
+          <div className="flex flex-wrap gap-8">
+            <span className="text-sm font-semibold uppercase tracking-[0.25em] text-foreground">
+              Verified experts
+            </span>
+            <span className="text-sm font-semibold uppercase tracking-[0.25em] text-foreground">
+              15m response
+            </span>
           </div>
         </motion.div>
 
