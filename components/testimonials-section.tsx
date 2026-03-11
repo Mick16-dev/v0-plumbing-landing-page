@@ -2,7 +2,7 @@
 
 import { useLanguage } from '@/app/context/language-context'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Star, CheckCircle, UserCheck } from 'lucide-react'
+import { Star, CheckCircle, UserCheck, ShieldCheck } from 'lucide-react'
 
 const testimonials = [
   {
