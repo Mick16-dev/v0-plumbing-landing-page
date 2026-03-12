@@ -90,6 +90,7 @@ export function DiagnosticFunnel({ onCtaClick }: DiagnosticFunnelProps) {
   const [selection, setSelection] = useState<Partial<DiagnosticSelection>>({})
   const [file, setFile] = useState<File | null>(null)
   const [filePreview, setFilePreview] = useState<string | null>(null)
+  const [previewError, setPreviewError] = useState(false)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [showResults, setShowResults] = useState(false)
   const [contact, setContact] = useState({ name: '', phone: '', email: '', address: '' })
@@ -97,13 +98,26 @@ export function DiagnosticFunnel({ onCtaClick }: DiagnosticFunnelProps) {
 
   const lang = language as 'en' | 'de'
 
-  const handleFileSelect = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const f = e.target.files?.[0]
-      if (!f) return
-      const isVideo = f.type.startsWith('video/')
-      const isImage = f.type.startsWith('image/')
-      if (!isVideo && !isImage) return
+  const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif']
+  const ACCEPTED_VIDEO_TYPES = ['video/mp4', 'video/quicktime', 'video/webm']
+  const ACCEPTED_TYPES = [...ACCEPTED_IMAGE_TYPES, ...ACCEPTED_VIDEO_TYPES]
+  const ACCEPT_STRING = ACCEPTED_TYPES.join(',')
+
+  const processFile = useCallback(
+    (f: File) => {
+      const isVideo = ACCEPTED_VIDEO_TYPES.includes(f.type)
+      const isImage = ACCEPTED_IMAGE_TYPES.includes(f.type)
+      if (!isVideo && !isImage) {
+        const heic = /heic|heif/i.test(f.name) || f.type === 'image/heic' || f.type === 'image/heif'
+        if (heic) {
+          alert(lang === 'de'
+            ? 'HEIC/HEIF wird nicht unterstützt. Bitte speichern Sie das Foto als JPEG (Einstellungen > Kamera > Formate).'
+            : 'HEIC/HEIF not supported. Please save as JPEG (Settings > Camera > Formats).')
+        } else {
+          alert(lang === 'de' ? 'Bitte JPG, PNG, WebP, GIF oder MP4/MOV/WebM verwenden.' : 'Please use JPG, PNG, WebP, GIF or MP4/MOV/WebM.')
+        }
+        return
+      }
       if (isVideo && f.size > MAX_VIDEO_BYTES) {
         alert(lang === 'de' ? 'Video max. 50 MB (ca. 2 Min).' : 'Video max 50 MB (~2 min).')
         return
@@ -113,12 +127,45 @@ export function DiagnosticFunnel({ onCtaClick }: DiagnosticFunnelProps) {
         return
       }
       setFile(f)
-      const reader = new FileReader()
-      reader.onload = (ev) => setFilePreview(ev.target?.result as string)
-      reader.readAsDataURL(f)
+      setPreviewError(false)
+      if (isImage) {
+        const reader = new FileReader()
+        reader.onload = (ev) => setFilePreview(ev.target?.result as string)
+        reader.onerror = () => {
+          setFilePreview('error')
+          setPreviewError(true)
+        }
+        reader.readAsDataURL(f)
+      } else {
+        setFilePreview('video')
+      }
     },
     [lang]
   )
+
+  const handleFileSelect = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const f = e.target.files?.[0]
+      if (f) processFile(f)
+      e.target.value = ''
+    },
+    [processFile]
+  )
+
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      e.stopPropagation()
+      const f = e.dataTransfer.files?.[0]
+      if (f) processFile(f)
+    },
+    [processFile]
+  )
+
+  const handleDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+  }, [])
 
   const handleAnalyze = async () => {
     if (!selection.location || !selection.problemType) return
@@ -306,27 +353,38 @@ export function DiagnosticFunnel({ onCtaClick }: DiagnosticFunnelProps) {
                         'mt-2 border-2 border-dashed rounded-xl p-8 text-center transition-colors',
                         filePreview ? 'border-primary/30 bg-primary/5' : 'border-border hover:border-primary/30'
                       )}
+                      onDrop={handleDrop}
+                      onDragOver={handleDragOver}
                     >
                       <input
                         type="file"
-                        accept="image/*,video/*"
+                        accept={ACCEPT_STRING}
                         onChange={handleFileSelect}
                         className="hidden"
                         id="diagnostic-upload"
                       />
                       <label htmlFor="diagnostic-upload" className="cursor-pointer block">
-                        {filePreview ? (
+                        {file && filePreview ? (
                           <div>
-                            {file?.type.startsWith('video/') ? (
+                            {filePreview === 'video' ? (
                               <Video className="w-12 h-12 text-primary mx-auto mb-2" />
+                            ) : previewError ? (
+                              <div className="max-h-32 flex items-center justify-center rounded-lg bg-muted">
+                                <span className="text-xs text-muted-foreground px-4">
+                                  {lang === 'de' ? 'Vorschau nicht verfügbar' : 'Preview unavailable'}
+                                </span>
+                              </div>
                             ) : (
                               <img
                                 src={filePreview}
                                 alt="Preview"
-                                className="max-h-32 mx-auto rounded-lg object-cover"
+                                className="max-h-32 w-auto max-w-full mx-auto rounded-lg object-contain"
+                                loading="lazy"
+                                decoding="async"
+                                onError={() => setPreviewError(true)}
                               />
                             )}
-                            <p className="text-sm font-medium mt-2">{file?.name}</p>
+                            <p className="text-sm font-medium mt-2 truncate max-w-full px-2">{file.name}</p>
                             <p className="text-xs text-muted-foreground">
                               {lang === 'de' ? 'Klicken zum Austauschen' : 'Click to replace'}
                             </p>
@@ -337,7 +395,7 @@ export function DiagnosticFunnel({ onCtaClick }: DiagnosticFunnelProps) {
                             <p className="text-sm text-muted-foreground">
                               {lang === 'de' ? 'Klicken oder Datei hierher ziehen' : 'Click or drag file here'}
                             </p>
-                            <p className="text-xs text-muted-foreground mt-1">JPG, PNG, MP4, MOV</p>
+                            <p className="text-xs text-muted-foreground mt-1">JPG, PNG, WebP, GIF · MP4, MOV, WebM</p>
                           </>
                         )}
                       </label>
