@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { Phone } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '@/app/context/language-context'
@@ -15,14 +16,14 @@ export function Header({ onEmergencyClick }: HeaderProps) {
   const { language, setLanguage, t } = useLanguage()
 
   const navItems = [
-    { href: '#home', label: t('nav.home') },
-    { href: '#services', label: t('nav.services') },
-    { href: '#pricing', label: t('nav.pricing') },
-    { href: '#about', label: t('nav.about') },
-    { href: '#reviews', label: t('nav.reviews') },
-    { href: '#how-it-works', label: t('nav.howItWorks') },
-    { href: '#faq', label: t('nav.faq') },
-    { href: '#contact', label: t('nav.contact') },
+    { href: '/', label: t('nav.home') },
+    { href: '/services', label: t('nav.services') },
+    { href: '/#pricing', label: t('nav.pricing') },
+    { href: '/#about', label: t('nav.about') },
+    { href: '/#reviews', label: t('nav.reviews') },
+    { href: '/#how-it-works', label: t('nav.howItWorks') },
+    { href: '/#faq', label: t('nav.faq') },
+    { href: '/#contact', label: t('nav.contact') },
   ]
 
   return (
@@ -52,13 +53,13 @@ export function Header({ onEmergencyClick }: HeaderProps) {
             {/* Primary navigation (desktop) */}
             <nav className="hidden lg:flex items-center gap-6 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.href}
                   href={item.href}
                   className="hover:text-foreground transition-colors"
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </nav>
 

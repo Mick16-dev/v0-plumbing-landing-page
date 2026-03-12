@@ -1,12 +1,15 @@
 'use client'
 
+import Link from 'next/link'
 import { useLanguage } from '@/app/context/language-context'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
+import { ArrowRight } from 'lucide-react'
 
 const jobs = [
   {
     id: 'drain',
+    slug: 'drain-cleaning',
     titleEn: 'Blocked toilet or drain',
     titleDe: 'Verstopfte Toilette oder Abfluss',
     fromPrice: 89,
@@ -15,6 +18,7 @@ const jobs = [
   },
   {
     id: 'leak',
+    slug: 'leak-repair',
     titleEn: 'Leak under sink or basin',
     titleDe: 'Leck unter Spüle oder Waschbecken',
     fromPrice: 99,
@@ -23,6 +27,7 @@ const jobs = [
   },
   {
     id: 'emergency',
+    slug: 'emergency-plumbing',
     titleEn: 'Emergency evening visit',
     titleDe: 'Notdienst am Abend',
     fromPrice: 149,
@@ -80,6 +85,12 @@ export function PricingSection({ onCtaClick }: PricingSectionProps) {
                     {language === 'de' ? 'inkl. MwSt.' : 'incl. VAT'}
                   </span>
                 </div>
+                <Link
+                  href={`/services/${job.slug}`}
+                  className="text-xs font-semibold text-secondary hover:underline flex items-center gap-1 mt-2"
+                >
+                  {language === 'de' ? 'Mehr erfahren' : 'Learn more'} <ArrowRight className="w-3 h-3" />
+                </Link>
                 <Button
                   onClick={onCtaClick}
                   className="mt-4 w-full h-10 rounded-xl text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90"

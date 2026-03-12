@@ -40,9 +40,6 @@ export function MasterExpertSection() {
             className="space-y-8"
           >
             <div className="space-y-4">
-              <span className="inline-flex px-5 py-2 bg-secondary/10 text-secondary text-xs font-semibold rounded-full uppercase tracking-[0.2em]">
-                {language === 'de' ? 'Das Team hinter Rohr-Blitz' : 'The team behind Rohr-Blitz'}
-              </span>
               <h2 className="text-4xl sm:text-5xl font-bold text-foreground tracking-tight leading-[1.1]">
                 {language === 'de'
                   ? 'Wir sind keine Plattform, sondern Ihr fester Klempnerbetrieb.'

@@ -36,7 +36,7 @@ const diagnosisSteps = [
 ]
 
 export function FeaturesSection({ onCtaClick }: FeaturesSectionProps) {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const [activePillar, setActivePillar] = useState<string>('expert-diagnosis')
 
   const container = {
@@ -101,10 +101,10 @@ export function FeaturesSection({ onCtaClick }: FeaturesSectionProps) {
               </p>
 
               <Link
-                href="/team"
-                className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-secondary"
+                href={pillar.id === 'expert-diagnosis' ? '/services/drain-cleaning' : pillar.id === 'time-cost' ? '/services' : '/team'}
+                className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-secondary hover:gap-2 transition-all"
               >
-                {t('features.learnMore')} <ArrowRight className="w-4 h-4" />
+                {pillar.id === 'expert-diagnosis' ? (language === 'de' ? 'Leistung ansehen' : 'View service') : pillar.id === 'time-cost' ? (language === 'de' ? 'Alle Leistungen' : 'All services') : t('features.learnMore')} <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
           ))}

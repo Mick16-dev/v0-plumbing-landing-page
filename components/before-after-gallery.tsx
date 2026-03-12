@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useLanguage } from '@/app/context/language-context'
 import { Button } from '@/components/ui/button'
@@ -80,9 +81,11 @@ function ComparisonSlider({ beforeImage, afterImage, beforeLabel, afterLabel }: 
   )
 }
 
+/** Real plumbing imagery (Unsplash – free commercial use, real photos) */
 const projects = [
   {
     id: 1,
+    slug: 'leak-repair',
     beforeImage: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80',
     afterImage: 'https://images.unsplash.com/photo-1600959907703-1251884b08a3?auto=format&fit=crop&w=900&q=80',
     titleEn: 'Leaking Pipe Repair',
@@ -92,21 +95,23 @@ const projects = [
   },
   {
     id: 2,
-    beforeImage: 'https://images.unsplash.com/photo-1563897539633-7374c276c212?auto=format&fit=crop&w=900&q=80',
+    slug: 'drain-cleaning',
+    beforeImage: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=900&q=80',
     afterImage: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=80',
-    titleEn: 'Drain Unclogging',
+    titleEn: 'Drain Unblocking',
     titleDe: 'Abfluss-Entstopfung',
     descEn: 'Cleared severe bathroom drain blockage',
     descDe: 'Starke Badezimmer-Verstopfung beseitigt'
   },
   {
     id: 3,
-    beforeImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=80',
-    afterImage: 'https://images.unsplash.com/photo-1620626011754-6e4c1f5c36b3?auto=format&fit=crop&w=900&q=80',
-    titleEn: 'Faucet Replacement',
-    titleDe: 'Armatur-Austausch',
-    descEn: 'Installed modern fixtures in master bath',
-    descDe: 'Moderne Armaturen im Hauptbad installiert'
+    slug: 'bathroom-plumbing',
+    beforeImage: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=900&q=80',
+    afterImage: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=900&q=80',
+    titleEn: 'Bathroom Fittings',
+    titleDe: 'Bad und Armaturen',
+    descEn: 'New taps, shower and basin installation',
+    descDe: 'Neue Armaturen, Dusche und Waschbecken installiert'
   }
 ]
 
@@ -126,9 +131,6 @@ export function BeforeAfterGallery({ onCtaClick }: BeforeAfterGalleryProps) {
           viewport={{ once: true }}
           className="text-center mb-24"
         >
-          <span className="inline-flex px-5 py-2 bg-secondary/10 text-secondary text-xs font-semibold rounded-full uppercase tracking-[0.2em] mb-6">
-            {t('gallery.badge') || "Visual Excellence"}
-          </span>
           <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4 tracking-tight">
             {t('gallery.title')}
           </h2>
@@ -147,6 +149,7 @@ export function BeforeAfterGallery({ onCtaClick }: BeforeAfterGalleryProps) {
               transition={{ delay: idx * 0.1 }}
               className="group"
             >
+              <Link href={`/services/${project.slug}`} className="block">
               <ComparisonSlider
                 beforeImage={project.beforeImage}
                 afterImage={project.afterImage}
@@ -154,13 +157,14 @@ export function BeforeAfterGallery({ onCtaClick }: BeforeAfterGalleryProps) {
                 afterLabel={language === 'de' ? 'Nachher' : 'After'}
               />
               <div className="pt-6 px-1">
-                <h3 className="text-xl font-semibold text-foreground mb-1 tracking-tight">
+                <h3 className="text-xl font-semibold text-foreground mb-1 tracking-tight group-hover:text-primary transition-colors">
                   {language === 'de' ? project.titleDe : project.titleEn}
                 </h3>
                 <p className="text-muted-foreground font-medium italic">
                   {language === 'de' ? project.descDe : project.descEn}
                 </p>
               </div>
+              </Link>
             </motion.div>
           ))}
         </div>
