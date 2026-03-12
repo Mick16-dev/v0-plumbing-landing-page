@@ -8,7 +8,7 @@ import {
   Bath,
   UtensilsCrossed,
   ShowerHead,
-  Plug,
+  LayoutGrid,
   HelpCircle,
   Loader2,
   Video,
@@ -40,7 +40,7 @@ const LOCATIONS: { id: Location; icon: React.ReactNode; labelEn: string; labelDe
   { id: 'kitchen_sink', icon: <UtensilsCrossed className="w-6 h-6" />, labelEn: 'Kitchen Sink', labelDe: 'Küchenspüle' },
   { id: 'bathroom_sink', icon: <Bath className="w-6 h-6" />, labelEn: 'Bathroom Sink', labelDe: 'Waschbecken' },
   { id: 'shower', icon: <ShowerHead className="w-6 h-6" />, labelEn: 'Shower', labelDe: 'Dusche' },
-  { id: 'pipe_floor', icon: <Plug className="w-6 h-6" />, labelEn: 'Pipe / Floor', labelDe: 'Rohr / Boden' },
+  { id: 'pipe_floor', icon: <LayoutGrid className="w-6 h-6" />, labelEn: 'Pipe / Floor', labelDe: 'Rohr / Boden' },
   { id: 'other', icon: <HelpCircle className="w-6 h-6" />, labelEn: 'Other', labelDe: 'Sonstiges' },
 ]
 
