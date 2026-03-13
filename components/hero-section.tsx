@@ -150,7 +150,7 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
     initial: { opacity: 0, scale: 0.95, y: 10 },
     animate: { opacity: 1, scale: 1, y: 0 },
     exit: { opacity: 0, scale: 0.95, y: -10 }
-  }
+  } as any
 
   return (
     <section className="relative pt-40 pb-32 px-4 min-h-[85vh] mesh-gradient overflow-hidden flex items-center justify-center">

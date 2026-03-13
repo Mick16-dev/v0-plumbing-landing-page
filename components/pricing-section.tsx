@@ -96,12 +96,12 @@ export function PricingSection({ onCtaClick }: PricingSectionProps) {
       opacity: 1,
       transition: { staggerChildren: 0.1 }
     }
-  }
+  } as any
 
   const item = {
     hidden: { opacity: 0, scale: 0.95 },
     show: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
-  }
+  } as any
 
   return (
     <section id="pricing" className="py-32 px-4 relative overflow-hidden bg-background">

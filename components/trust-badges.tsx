@@ -54,12 +54,12 @@ export function TrustBadges() {
         ease: [0.16, 1, 0.3, 1]
       }
     }
-  }
+  } as any
 
   const item = {
     hidden: { opacity: 0, scale: 0.95 },
     show: { opacity: 1, scale: 1 }
-  }
+  } as any
 
   return (
     <section className="py-20 px-4 bg-background relative overflow-hidden">
