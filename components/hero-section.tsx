@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import { Upload, Droplet, CircleOff, Wrench, Plus, CheckCircle, Clock, ShieldCheck, MapPin } from 'lucide-react'
+import { Upload, Droplet, CircleOff, Wrench, Plus, CheckCircle, Clock, ShieldCheck, MapPin, ArrowRight } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '@/app/context/language-context'
 import { Button } from '@/components/ui/button'
@@ -53,12 +53,11 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ onCtaClick }: HeroSectionProps) {
-  const { t } = useLanguage()
+  const { language, t } = useLanguage()
   const [step, setStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
-  const [isFunnelOpen, setIsFunnelOpen] = useState(false) // Funnel modal
-  const [isFormOpen, setIsFormOpen] = useState(false) // Final info modal
+  const [isFunnelOpen, setIsFunnelOpen] = useState(false)
   const [estimate, setEstimate] = useState<EstimateRange | null>(null)
   const [formData, setFormData] = useState<FormData>({
     image: null,
@@ -70,6 +69,9 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
     email: '',
     address: ''
   })
+
+  // We add a virtual step 4 for the form
+  const isFinalForm = step === 4 && !isSuccess && !isSubmitting
 
   const handleImageDrop = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
@@ -113,20 +115,19 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
     setFormData(prev => ({ ...prev, severity: value[0] }))
   }
 
-  const handleSeverityContinue = async () => {
+  const handleSeverityContinue = () => {
+    setStep(4) // Move to form
+  }
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
     setIsSubmitting(true)
-    // Simulate Blueprint Scanning phase
+    // Master Digital Diagnosis Animation
     await new Promise(resolve => setTimeout(resolve, 3500))
     if (formData.issueType) {
       setEstimate(calculateEstimate(formData.issueType, formData.severity))
     }
     setIsSubmitting(false)
-    setIsFormOpen(true)
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsFormOpen(false)
     setIsSuccess(true)
   }
 
@@ -152,7 +153,7 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
   }
 
   return (
-    <section className="relative pt-40 pb-32 px-4 min-h-[90vh] mesh-gradient overflow-hidden flex items-center justify-center">
+    <section className="relative pt-40 pb-32 px-4 min-h-[85vh] mesh-gradient overflow-hidden flex items-center justify-center">
       <div className="absolute inset-0 grain-overlay opacity-50" />
 
       <div className="max-w-6xl mx-auto relative z-10 text-center space-y-12">
@@ -166,7 +167,7 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
             {t('hero.title')}
           </h1>
 
-          <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto font-medium leading-relaxed">
+          <p className="text-xl sm:text-3xl text-muted-foreground max-w-3xl mx-auto font-medium leading-relaxed italic">
             {t('hero.subtitle')}
           </p>
 
@@ -175,10 +176,10 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
               <Button
                 onClick={() => setIsFunnelOpen(true)}
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 font-black uppercase tracking-[0.2em] h-20 px-12 rounded-2xl text-lg shadow-2xl shadow-primary/20 group relative overflow-hidden active:scale-95 transition-all"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 font-black uppercase tracking-[0.2em] h-20 px-12 rounded-3xl text-lg sm:text-xl shadow-2xl shadow-primary/20 group relative overflow-hidden active:scale-95 transition-all"
               >
                 <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-                <span className="relative z-10 flex items-center gap-2">
+                <span className="relative z-10 flex items-center gap-3">
                   {t('funnel.cta')}
                   <Plus className="w-6 h-6 group-hover:rotate-90 transition-transform" />
                 </span>
@@ -187,7 +188,7 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
             
             <a 
               href="#services" 
-              className="text-sm font-black uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors py-4 px-8"
+              className="text-sm sm:text-base font-black uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors py-4 px-8"
             >
               {t('nav.services')}
             </a>
@@ -195,11 +196,11 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
         </motion.div>
       </div>
 
-      {/* Funnel Modal */}
+      {/* Unified Funnel & Form Dialog */}
       <Dialog open={isFunnelOpen} onOpenChange={setIsFunnelOpen}>
         <DialogContent className="max-w-xl p-0 bg-transparent border-0 shadow-none overflow-visible">
           <Card className="glass-card overflow-hidden rounded-[3rem] border-white/40 shadow-2xl">
-            <CardContent className="p-8 sm:p-12 relative">
+            <CardContent className="p-8 sm:p-12 relative max-h-[90vh] overflow-y-auto custom-scrollbar">
               <AnimatePresence mode="wait">
                 {isSuccess ? (
                   <motion.div
@@ -213,7 +214,7 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
                       <CheckCircle className="w-12 h-12 text-success-foreground" />
                     </div>
                     <h2 className="text-3xl font-black text-foreground mb-4 italic uppercase">{t('funnel.success.title')}</h2>
-                    <p className="text-muted-foreground mb-10 font-medium">{t('funnel.success.desc')}</p>
+                    <p className="text-muted-foreground mb-10 font-medium text-lg italic">{t('funnel.success.desc')}</p>
 
                     {estimate && (
                       <motion.div
@@ -256,6 +257,43 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
                     <h3 className="text-2xl font-black text-foreground italic uppercase tracking-tighter mb-2">{t('hero.masterDiagnostic')}</h3>
                     <p className="text-secondary text-sm font-bold uppercase tracking-[0.2em] animate-pulse">{t('hero.analyzing')}</p>
                   </motion.div>
+                ) : isFinalForm ? (
+                  <motion.div
+                    key="form"
+                    variants={variants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    className="space-y-8"
+                  >
+                    <h2 className="text-3xl font-black uppercase italic text-center mb-8">{t('funnel.step4.title')}</h2>
+                    <form onSubmit={handleFormSubmit} className="space-y-6">
+                      {[
+                        { id: 'name', label: t('form.name'), type: 'text' },
+                        { id: 'phone', label: t('form.phone'), type: 'tel' },
+                        { id: 'email', label: t('form.email'), type: 'email' },
+                        { id: 'address', label: t('form.address'), type: 'text' }
+                      ].map((field) => (
+                        <div key={field.id} className="space-y-2">
+                          <Label htmlFor={field.id} className="text-[10px] font-black uppercase tracking-widest ml-1 opacity-50">{field.label}</Label>
+                          <Input
+                            id={field.id}
+                            type={field.type}
+                            required
+                            value={(formData as any)[field.id]}
+                            onChange={(e) => setFormData(prev => ({ ...prev, [field.id]: e.target.value }))}
+                            className="bg-muted/50 border-0 rounded-2xl h-14 hover:ring-2 ring-secondary/20 transition-all font-bold"
+                          />
+                        </div>
+                      ))}
+                      <Button type="submit" className="w-full bg-secondary text-white font-black uppercase tracking-[0.2em] h-20 rounded-2xl mt-8 shadow-xl shadow-secondary/20 text-lg">
+                        <span className="relative z-10 flex items-center gap-2">
+                          {t('funnel.cta')}
+                          <ArrowRight className="w-6 h-6" />
+                        </span>
+                      </Button>
+                    </form>
+                  </motion.div>
                 ) : (
                   <motion.div
                     key={step}
@@ -265,8 +303,8 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
                     exit="exit"
                   >
                     {/* Progress */}
-                    <div className="flex items-center justify-between gap-3 mb-10">
-                      {[1, 2, 3].map((s) => (
+                    <div className="flex items-center justify-between gap-3 mb-12">
+                      {[1, 2, 3, 4].map((s) => (
                         <div key={s} className="flex-1 relative h-2">
                           <div className="absolute inset-0 bg-muted/30 rounded-full" />
                           <motion.div
@@ -282,45 +320,45 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
                     </div>
 
                     {step === 1 && (
-                      <div className="space-y-8">
+                      <div className="space-y-10">
                         <div className="text-center">
-                          <h2 className="text-3xl font-black tracking-tighter uppercase italic mb-2">{t('funnel.step1.title')}</h2>
-                          <p className="text-muted-foreground font-medium">{t('funnel.step1.desc')}</p>
+                          <h2 className="text-4xl font-black tracking-tighter uppercase italic mb-3">{t('funnel.step1.title')}</h2>
+                          <p className="text-muted-foreground font-medium text-lg italic">{t('funnel.step1.desc')}</p>
                         </div>
                         <div
                           onDrop={handleImageDrop}
                           onDragOver={(e) => e.preventDefault()}
-                          className="relative border-4 border-dashed border-border hover:border-secondary rounded-[2.5rem] p-16 text-center cursor-pointer transition-all duration-500 hover:bg-white/50 group"
+                          className="relative border-4 border-dashed border-border hover:border-secondary rounded-[3rem] p-20 text-center cursor-pointer transition-all duration-500 hover:bg-white group"
                         >
                           <input type="file" accept="image/*" onChange={handleImageSelect} className="hidden" id="image-upload" />
                           <label htmlFor="image-upload" className="cursor-pointer block">
-                            <Upload className="w-12 h-12 text-primary mx-auto mb-6 group-hover:scale-110 transition-transform" />
-                            <span className="block text-sm font-black uppercase tracking-widest text-foreground">{t('funnel.step1.formats')}</span>
+                            <Upload className="w-16 h-16 text-primary mx-auto mb-8 group-hover:scale-110 transition-transform" />
+                            <span className="block text-sm font-black uppercase tracking-[0.3em] text-foreground">{t('funnel.step1.formats')}</span>
                           </label>
                         </div>
                       </div>
                     )}
 
                     {step === 2 && (
-                      <div className="space-y-8">
-                        <div className="flex items-center gap-6 mb-8">
+                      <div className="space-y-10">
+                        <div className="flex items-center gap-8 mb-10">
                           {formData.imagePreview && (
-                            <img src={formData.imagePreview} alt="Issue" className="w-20 h-20 object-cover rounded-2xl ring-4 ring-white" />
+                            <img src={formData.imagePreview} alt="Issue" className="w-24 h-24 object-cover rounded-[2rem] ring-8 ring-white shadow-2xl" />
                           )}
-                          <h2 className="text-2xl font-black uppercase italic">{t('funnel.step2.title')}</h2>
+                          <h2 className="text-3xl font-black uppercase italic leading-none">{t('funnel.step2.title')}</h2>
                         </div>
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-2 gap-6">
                           {issueCategories.map(({ type, icon, color }) => (
                             <button
                               key={type}
                               onClick={() => handleIssueSelect(type)}
                               className={cn(
-                                "p-6 rounded-[2rem] border-2 text-left transition-all",
-                                formData.issueType === type ? "border-secondary bg-white shadow-xl" : "border-border/50 bg-card/10 hover:bg-white"
+                                "p-8 rounded-[2.5rem] border-2 text-left transition-all group",
+                                formData.issueType === type ? "border-secondary bg-white shadow-2xl scale-105" : "border-border/50 bg-card/10 hover:bg-white"
                               )}
                             >
-                              <div className={cn(color, "mb-4")}>{icon}</div>
-                              <p className="font-black text-[10px] uppercase tracking-widest leading-none">{t(`issue.${type}`)}</p>
+                              <div className={cn(color, "mb-6 transform group-hover:scale-110 transition-transform")}>{icon}</div>
+                              <p className="font-black text-xs sm:text-sm uppercase tracking-widest leading-tight">{t(`issue.${type}`)}</p>
                             </button>
                           ))}
                         </div>
@@ -328,20 +366,26 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
                     )}
 
                     {step === 3 && (
-                      <div className="space-y-10">
-                        <h2 className="text-2xl font-black uppercase italic text-center">{t('funnel.step3.title')}</h2>
-                        <div className="px-6 space-y-10">
-                          <Slider value={[formData.severity]} onValueChange={handleSeverityChange} min={1} max={5} step={1} />
-                          <div className="flex justify-between text-[10px] font-black uppercase text-muted-foreground">
+                      <div className="space-y-12">
+                        <h2 className="text-3xl font-black uppercase italic text-center">{t('funnel.step3.title')}</h2>
+                        <div className="px-6 space-y-12">
+                          <Slider value={[formData.severity]} onValueChange={handleSeverityChange} min={1} max={5} step={1} className="py-4" />
+                          <div className="flex justify-between text-[10px] font-black uppercase text-muted-foreground px-2">
                             {severityLabels.map((l, i) => <span key={i} className={formData.severity === i+1 ? "text-primary":""}>{l}</span>)}
                           </div>
-                          <div className={cn("text-center p-10 rounded-[2rem] shadow-lg transition-all", 
-                            formData.severity >= 4 ? "bg-destructive/10 text-destructive-foreground" : 
-                            formData.severity >= 3 ? "bg-amber-500/10 text-amber-600" : "bg-success/10 text-success"
-                          )}>
-                            <p className="font-black text-4xl uppercase italic">{severityLabels[formData.severity - 1]}</p>
-                          </div>
-                          <Button onClick={handleSeverityContinue} className="w-full h-16 bg-primary text-white font-black uppercase tracking-widest rounded-2xl shadow-xl">{t('hero.calculate')}</Button>
+                          <motion.div 
+                            animate={{ scale: [1, 1.05, 1] }}
+                            transition={{ repeat: Infinity, duration: 3 }}
+                            className={cn("text-center p-12 rounded-[3rem] shadow-xl transition-all", 
+                              formData.severity >= 4 ? "bg-destructive/10 text-destructive-foreground" : 
+                              formData.severity >= 3 ? "bg-amber-500/10 text-amber-600" : "bg-success/10 text-success"
+                            )}
+                          >
+                            <p className="font-black text-5xl uppercase italic tracking-tighter">{severityLabels[formData.severity - 1]}</p>
+                          </motion.div>
+                          <Button onClick={handleSeverityContinue} className="w-full h-20 bg-primary text-white font-black uppercase tracking-[0.2em] rounded-2xl shadow-xl text-lg">
+                            {t('hero.calculate')}
+                          </Button>
                         </div>
                       </div>
                     )}
@@ -350,34 +394,6 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
               </AnimatePresence>
             </CardContent>
           </Card>
-        </DialogContent>
-      </Dialog>
-
-      {/* Final Step Modal */}
-      <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
-        <DialogContent className="sm:max-w-md bg-white rounded-[3rem] border-0 p-10">
-          <h2 className="text-3xl font-black uppercase italic text-center mb-8">{t('funnel.step4.title')}</h2>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {[
-              { id: 'name', label: t('form.name'), type: 'text' },
-              { id: 'phone', label: t('form.phone'), type: 'tel' },
-              { id: 'email', label: t('form.email'), type: 'email' },
-              { id: 'address', label: t('form.address'), type: 'text' }
-            ].map((field) => (
-              <div key={field.id} className="space-y-2">
-                <Label htmlFor={field.id} className="text-[10px] font-black uppercase tracking-widest ml-1 opacity-50">{field.label}</Label>
-                <Input
-                  id={field.id}
-                  type={field.type}
-                  required
-                  value={(formData as any)[field.id]}
-                  onChange={(e) => setFormData(prev => ({ ...prev, [field.id]: e.target.value }))}
-                  className="bg-muted/50 border-0 rounded-2xl h-14"
-                />
-              </div>
-            ))}
-            <Button type="submit" className="w-full bg-secondary text-white font-black uppercase tracking-[0.2em] h-16 rounded-2xl mt-8 shadow-xl shadow-secondary/20">{t('funnel.cta')}</Button>
-          </form>
         </DialogContent>
       </Dialog>
     </section>
