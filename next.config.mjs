@@ -7,7 +7,7 @@ const nextConfig = {
     unoptimized: true,
   },
   experimental: {
-    turbo: {
+    turbopack: {
       root: 'c:\\Users\\micha\\.antigravity\\v0-plumbing-landing-page',
     },
   },
