@@ -59,28 +59,12 @@ export function TrustBadges() {
   } as any
 
   return (
-    <section className="py-24 px-4 bg-primary relative overflow-hidden">
-      {/* Decorative Elements */}
+    <section className="py-12 px-4 bg-primary relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary/50 to-transparent" />
       <div className="absolute -top-24 -left-24 w-64 h-64 bg-secondary/10 rounded-full blur-3xl" />
       <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-col items-center mb-16"
-        >
-          <div className="flex items-center gap-2 mb-4">
-            <div className="h-[1px] w-8 bg-secondary" />
-            <span className="text-secondary font-black uppercase tracking-[0.3em] text-[10px]">{t('trust.badge') || "The Gold Standard"}</span>
-            <div className="h-[1px] w-8 bg-secondary" />
-          </div>
-          <h2 className="text-4xl sm:text-5xl font-black text-white text-center italic uppercase tracking-tighter max-w-3xl">
-            {t('trust.title')}
-          </h2>
-        </motion.div>
 
         <motion.div
           variants={container}

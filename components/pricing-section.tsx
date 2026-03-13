@@ -25,6 +25,8 @@ const plans = [
       'E-Mail-Support',
       'Standard-Teile-Garantie'
     ],
+    descEn: 'Essential diagnostics and repairs for common plumbing issues.',
+    descDe: 'Grundlegende Diagnosen und Reparaturen für häufige Probleme.',
     popular: false
   },
   {
@@ -46,6 +48,8 @@ const plans = [
       'Erweiterte Teile-Garantie',
       'Vierteljährliche Wartung'
     ],
+    descEn: 'Perfect for homes needing fast and reliable scheduled maintenance.',
+    descDe: 'Perfekt für Häuser, die schnelle und zuverlässige Wartung benötigen.',
     popular: true
   },
   {
@@ -69,6 +73,8 @@ const plans = [
       'Monatliche Prävention',
       'Kostenlose Notrufe'
     ],
+    descEn: 'Full coverage 24/7 emergency service with lifetime warranties.',
+    descDe: 'Voller Schutz durch 24/7 Notdienst und lebenslange Garantien.',
     popular: false
   }
 ]
@@ -129,7 +135,7 @@ export function PricingSection({ onCtaClick }: PricingSectionProps) {
               variants={item as any}
               whileHover={{ y: -10 }}
               className={cn(
-                "relative group p-8 lg:p-10 rounded-[3.5rem] transition-all duration-500",
+                "relative group flex flex-col h-full p-8 lg:p-10 rounded-[3.5rem] transition-all duration-500",
                 plan.popular
                   ? "bg-primary border-4 border-secondary text-primary-foreground shadow-2xl shadow-primary/40 scale-105 z-20"
                   : "bg-white/50 backdrop-blur-xl border border-white/60 text-foreground"
@@ -161,6 +167,12 @@ export function PricingSection({ onCtaClick }: PricingSectionProps) {
                   )}>/
                     {t('pricing.month')}</span>
                 </div>
+                <p className={cn(
+                  "text-sm font-medium italic mt-2 w-full",
+                  plan.popular ? "text-white/80" : "text-muted-foreground"
+                )}>
+                  {language === 'de' ? (plan as any).descDe : (plan as any).descEn}
+                </p>
               </div>
 
               <div className={cn(
@@ -182,7 +194,7 @@ export function PricingSection({ onCtaClick }: PricingSectionProps) {
                 ))}
               </ul>
 
-              <Magnetic strength={0.2} className="w-full">
+              <Magnetic strength={0.2} className="w-full mt-auto">
                 <Button
                   onClick={onCtaClick}
                   className={cn(

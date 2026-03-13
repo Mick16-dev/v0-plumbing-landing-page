@@ -26,19 +26,19 @@ export function Header({ onEmergencyClick }: HeaderProps) {
           {/* Logo */}
           <motion.div 
             whileHover={{ scale: 1.02 }}
-            className="flex items-center gap-4 group cursor-pointer"
+            className="flex items-center gap-2 sm:gap-4 group cursor-pointer shrink-0"
           >
-            <div className="w-16 h-16 bg-secondary rounded-2xl flex items-center justify-center shadow-2xl shadow-secondary/20 group-hover:rotate-6 transition-transform p-3">
+            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-secondary rounded-2xl flex items-center justify-center shadow-2xl shadow-secondary/20 group-hover:rotate-6 transition-transform p-2 sm:p-3">
               <img src="/logo-custom.svg" alt="Rohr-Blitz Logo" className="w-full h-full object-contain brightness-0 invert" />
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl font-black italic uppercase tracking-tighter leading-none">{t('header.logo')}</span>
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-secondary">Premium Plumbing</span>
+              <span className="text-xl sm:text-2xl font-black italic uppercase tracking-tighter leading-none">{t('header.logo')}</span>
+              <span className="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.4em] text-secondary">Premium Plumbing</span>
             </div>
           </motion.div>
 
           {/* Language Toggle + Emergency CTA */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4 shrink-0">
             {/* Language Toggle */}
             <div className="hidden md:flex items-center bg-muted/50 backdrop-blur-sm rounded-2xl p-1.5 border border-border/50">
               {(['en', 'de'] as const).map((lang) => (
@@ -72,16 +72,16 @@ export function Header({ onEmergencyClick }: HeaderProps) {
               >
                 <Button 
                   onClick={onEmergencyClick}
-                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90 font-bold px-6 py-6 rounded-2xl shadow-xl shadow-destructive/20 relative group overflow-hidden"
+                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90 font-bold px-4 py-4 sm:px-6 sm:py-6 rounded-2xl shadow-xl shadow-destructive/20 relative group overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-                  <span className="relative flex h-3 w-3 mr-3">
+                  <span className="relative flex h-3 w-3 mr-2 sm:mr-3">
                     <span className="animate-pulse-premium absolute inline-flex h-full w-full rounded-full bg-red-400/50"></span>
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
                   </span>
-                  <Phone className="w-5 h-5 mr-2" />
-                  <span className="hidden sm:inline uppercase tracking-wider">{t('header.emergency')}</span>
-                  <span className="sm:hidden">24/7</span>
+                  <Phone className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
+                  <span className="hidden lg:inline uppercase tracking-wider text-sm sm:text-base">{t('header.emergency')}</span>
+                  <span className="lg:hidden text-xs sm:text-sm">24/7</span>
                 </Button>
               </motion.div>
             </Magnetic>

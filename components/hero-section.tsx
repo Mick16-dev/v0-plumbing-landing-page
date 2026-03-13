@@ -10,6 +10,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
+import { Dialog, DialogContent } from '@/components/ui/dialog'
 import { cn } from '@/lib/utils'
 
 type IssueCategory = 'leaking' | 'clogged' | 'broken' | 'installation'
@@ -56,6 +57,7 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
   const [step, setStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const [estimate, setEstimate] = useState<EstimateRange | null>(null)
   const [formData, setFormData] = useState<FormData>({
     image: null,
@@ -110,22 +112,20 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
     setFormData(prev => ({ ...prev, severity: value[0] }))
   }
 
-  const handleSeverityContinue = () => {
-    setStep(4)
+  const handleSeverityContinue = async () => {
+    setIsSubmitting(true)
+    // Simulate Blueprint Scanning phase
+    await new Promise(resolve => setTimeout(resolve, 3500))
+    if (formData.issueType) {
+      setEstimate(calculateEstimate(formData.issueType, formData.severity))
+    }
+    setIsSubmitting(false)
+    setIsModalOpen(true)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
-
-    // Simulate Blueprint Scanning phase
-    await new Promise(resolve => setTimeout(resolve, 3500))
-
-    if (formData.issueType) {
-      setEstimate(calculateEstimate(formData.issueType, formData.severity))
-    }
-
-    setIsSubmitting(false)
+    setIsModalOpen(false)
     setIsSuccess(true)
   }
 
@@ -206,9 +206,9 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
           <Card className="glass-card overflow-hidden rounded-[2.5rem] border-white/40 shadow-2xl">
             <CardContent className="p-8 sm:p-10">
               {/* Progress Pillar */}
-              {!isSuccess && (
+              {!isSuccess && !isSubmitting && (
                 <div className="flex items-center justify-between gap-3 mb-10">
-                  {[1, 2, 3, 4].map((s) => (
+                  {[1, 2, 3].map((s) => (
                     <div key={s} className="flex-1 relative h-2">
                       <div className="absolute inset-0 bg-muted/30 rounded-full" />
                       <motion.div
@@ -380,88 +380,33 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
                       </div>
                     )}
 
-                    {step === 4 && (
-                      <div className="space-y-8 relative">
-                        <AnimatePresence>
-                          {isSubmitting && (
-                            <motion.div
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              exit={{ opacity: 0 }}
-                              className="absolute inset-[-2rem] z-50 bg-primary/95 backdrop-blur-xl rounded-[2.5rem] flex flex-col items-center justify-center p-12 text-center"
-                            >
-                              <div className="absolute inset-0 blueprint-grid opacity-20" />
-                              <motion.div
-                                animate={{ top: ['0%', '100%', '0%'] }}
-                                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                                className="absolute left-0 right-0 h-px bg-secondary shadow-[0_0_15px_rgba(var(--secondary),0.8)] z-10"
-                              />
-
-                              <div className="relative z-20 space-y-8">
-                                <div className="relative w-32 h-32 mx-auto">
-                                  <motion.div
-                                    animate={{ rotate: 360 }}
-                                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                                    className="absolute inset-0 border-2 border-dashed border-secondary/30 rounded-full"
-                                  />
-                                  <div className="absolute inset-4 border-2 border-secondary rounded-full flex items-center justify-center">
-                                    <Wrench className="w-10 h-10 text-secondary animate-pulse" />
-                                  </div>
-                                </div>
-
-                                <div className="space-y-2">
-                                  <h3 className="text-2xl font-black text-white italic uppercase tracking-tighter">{t('hero.masterDiagnostic')}</h3>
-                                  <p className="text-white/60 text-sm font-bold uppercase tracking-[0.2em] animate-pulse">{t('hero.analyzing')}</p>
-                                </div>
-
-                                <div className="flex gap-2 justify-center">
-                                  {[1, 2, 3].map(i => (
-                                    <motion.div
-                                      key={i}
-                                      animate={{ scale: [1, 1.5, 1], opacity: [0.3, 1, 0.3] }}
-                                      transition={{ duration: 1, repeat: Infinity, delay: i * 0.2 }}
-                                      className="w-2 h-2 bg-secondary rounded-full"
-                                    />
-                                  ))}
-                                </div>
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-
-                        <h2 className="text-2xl font-black tracking-tighter uppercase italic text-center">{t('funnel.step4.title')}</h2>
-
-                        <form onSubmit={handleSubmit} className="space-y-4 max-w-sm mx-auto">
-                          {[
-                            { id: 'name', label: t('form.name'), type: 'text' },
-                            { id: 'phone', label: t('form.phone'), type: 'tel' },
-                            { id: 'email', label: t('form.email'), type: 'email' },
-                            { id: 'address', label: t('form.address'), type: 'text' }
-                          ].map((field) => (
-                            <div key={field.id} className="space-y-2">
-                              <Label htmlFor={field.id} className="text-[10px] font-black uppercase tracking-widest ml-1">{field.label}</Label>
-                              <Input
-                                id={field.id}
-                                type={field.type}
-                                required
-                                value={(formData as any)[field.id]}
-                                onChange={(e) => setFormData(prev => ({ ...prev, [field.id]: e.target.value }))}
-                                className="bg-white/50 border-white/40 rounded-xl h-12 focus:ring-secondary"
-                              />
-                            </div>
-                          ))}
-
-                          <Magnetic strength={0.2} className="w-full">
-                            <Button
-                              disabled={isSubmitting}
-                              className="w-full bg-secondary text-white hover:bg-secondary/90 font-black uppercase tracking-[0.2em] h-16 rounded-2xl mt-6 shadow-xl shadow-secondary/20 relative group overflow-hidden"
-                            >
-                              <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-                              {isSubmitting ? <Loader2 className="w-6 h-6 animate-spin" /> : t('funnel.cta')}
-                            </Button>
-                          </Magnetic>
-                        </form>
                       </div>
+                    )}
+
+                    {isSubmitting && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="py-12 flex flex-col items-center justify-center text-center"
+                      >
+                        <div className="relative z-20 space-y-8">
+                          <div className="relative w-32 h-32 mx-auto">
+                            <motion.div
+                              animate={{ rotate: 360 }}
+                              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                              className="absolute inset-0 border-2 border-dashed border-secondary/30 rounded-full"
+                            />
+                            <div className="absolute inset-4 border-2 border-secondary rounded-full flex items-center justify-center">
+                              <Wrench className="w-10 h-10 text-secondary animate-pulse" />
+                            </div>
+                          </div>
+                          <div className="space-y-2">
+                            <h3 className="text-2xl font-black text-foreground italic uppercase tracking-tighter">{t('hero.masterDiagnostic')}</h3>
+                            <p className="text-secondary text-sm font-bold uppercase tracking-[0.2em] animate-pulse">{t('hero.analyzing')}</p>
+                          </div>
+                        </div>
+                      </motion.div>
                     )}
                   </motion.div>
                 )}
@@ -481,6 +426,39 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
           </div>
         </motion.div>
       </div>
+
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="sm:max-w-md bg-white rounded-[2.5rem] border-0 p-8">
+          <h2 className="text-2xl font-black tracking-tighter uppercase italic text-center mb-6">{t('funnel.step4.title')}</h2>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {[
+              { id: 'name', label: t('form.name'), type: 'text' },
+              { id: 'phone', label: t('form.phone'), type: 'tel' },
+              { id: 'email', label: t('form.email'), type: 'email' },
+              { id: 'address', label: t('form.address'), type: 'text' }
+            ].map((field) => (
+              <div key={field.id} className="space-y-2">
+                <Label htmlFor={field.id} className="text-[10px] font-black uppercase tracking-widest ml-1">{field.label}</Label>
+                <Input
+                  id={field.id}
+                  type={field.type}
+                  required
+                  value={(formData as any)[field.id]}
+                  onChange={(e) => setFormData(prev => ({ ...prev, [field.id]: e.target.value }))}
+                  className="bg-card/50 border-border/50 rounded-xl h-12 focus:ring-secondary"
+                />
+              </div>
+            ))}
+            <Button
+              type="submit"
+              className="w-full bg-secondary text-white hover:bg-secondary/90 font-black uppercase tracking-[0.2em] h-16 rounded-2xl mt-6 shadow-xl shadow-secondary/20 relative group overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+              <span className="relative z-10">{t('funnel.cta')}</span>
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
     </section>
   )
 }
