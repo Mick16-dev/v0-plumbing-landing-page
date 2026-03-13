@@ -4,7 +4,7 @@ import { useLanguage } from '@/app/context/language-context'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Magnetic } from '@/components/ui/magnetic'
-import { Check, ShieldCheck, Clock, Crown, MapPin } from 'lucide-react'
+import { Check, ShieldCheck, Clock, Crown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const plans = [
@@ -14,19 +14,21 @@ const plans = [
     price: 99,
     icon: ShieldCheck,
     featuresEn: [
-      'Standard response time (2-4 hours)',
-      'Basic diagnostics',
-      'Email support',
-      'Standard parts warranty'
+      'Standard response (2-4h)',
+      'Basic visuals check',
+      'Email documentation',
+      '1-year parts warranty',
+      'Leak detection sensor'
     ],
     featuresDe: [
-      'Standard-Reaktionszeit (2-4 Stunden)',
-      'Basis-Diagnose',
-      'E-Mail-Support',
-      'Standard-Teile-Garantie'
+      'Standard-Reaktion (2-4h)',
+      'Basis-Visual-Check',
+      'E-Mail-Dokumentation',
+      '1 Jahr Teile-Garantie',
+      'Leckage-Sensor inklusive'
     ],
-    descEn: 'Essential diagnostics and repairs for common plumbing issues.',
-    descDe: 'Grundlegende Diagnosen und Reparaturen für häufige Probleme.',
+    descEn: 'Essential coverage for common household maintenance.',
+    descDe: 'Grundlegende Absicherung für gängige Haushaltsprobleme.',
     popular: false
   },
   {
@@ -35,21 +37,23 @@ const plans = [
     price: 199,
     icon: Clock,
     featuresEn: [
-      'Priority response (under 1 hour)',
-      'Master digital diagnostics',
-      '24/7 phone support',
-      'Extended parts warranty',
-      'Quarterly maintenance check'
+      'Priority response (< 1h)',
+      'Advanced master check',
+      '24/7 Hotline access',
+      '3-year parts warranty',
+      'Annual system tune-up',
+      'Priority scheduling'
     ],
     featuresDe: [
-      'Prioritäts-Reaktion (unter 1 Stunde)',
-      'Digitale Meister-Diagnose',
-      '24/7 Telefon-Support',
-      'Erweiterte Teile-Garantie',
-      'Vierteljährliche Wartung'
+      'Prioritäts-Reaktion (< 1h)',
+      'Erweiterter Meister-Check',
+      '24/7 Hotline-Zugang',
+      '3 Jahre Teile-Garantie',
+      'Jährliche Systemwartung',
+      'Bevorzugte Terminierung'
     ],
-    descEn: 'Perfect for homes needing fast and reliable scheduled maintenance.',
-    descDe: 'Perfekt für Häuser, die schnelle und zuverlässige Wartung benötigen.',
+    descEn: 'The preferred choice for families and busy households.',
+    descDe: 'Die bevorzugte Wahl für Familien und vielbeschäftigte Haushalte.',
     popular: true
   },
   {
@@ -58,23 +62,23 @@ const plans = [
     price: 399,
     icon: Crown,
     featuresEn: [
-      'Emergency priority (under 30 min)',
-      'Advanced master diagnostics + video',
-      'Dedicated account manager',
+      'Emergency priority (< 30m)',
+      'Deep diagnostic + Video',
+      'Dedicated Specialist',
       'Lifetime parts warranty',
-      'Monthly preventive maintenance',
-      'Free emergency calls'
+      'Monthly maintenance',
+      'Zero call-out fees'
     ],
     featuresDe: [
-      'Notfall-Priorität (unter 30 Min)',
-      'Erweiterte Meister-Diagnose + Video',
-      'Persönlicher Ansprechpartner',
+      'Notfall-Priorität (< 30m)',
+      'Tiefendiagnose + Video',
+      'Eigener Ansprechpartner',
       'Lebenslange Teile-Garantie',
       'Monatliche Prävention',
-      'Kostenlose Notrufe'
+      'Keine Anfahrtskosten'
     ],
-    descEn: 'Full coverage 24/7 emergency service with lifetime warranties.',
-    descDe: 'Voller Schutz durch 24/7 Notdienst und lebenslange Garantien.',
+    descEn: 'Total peace of mind with 24/7 elite protection.',
+    descDe: 'Rundum sorgenfrei mit 24/7 Elite-Schutz.',
     popular: false
   }
 ]
@@ -100,7 +104,7 @@ export function PricingSection({ onCtaClick }: PricingSectionProps) {
   }
 
   return (
-    <section className="py-32 px-4 relative overflow-hidden bg-background">
+    <section id="pricing" className="py-32 px-4 relative overflow-hidden bg-background">
       <div className="absolute inset-0 mesh-gradient opacity-10" />
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -110,11 +114,10 @@ export function PricingSection({ onCtaClick }: PricingSectionProps) {
           viewport={{ once: true }}
           className="text-center mb-24"
         >
-
-          <h2 className="text-4xl sm:text-6xl font-black text-foreground mb-8 tracking-tighter italic uppercase">
+          <h2 className="text-5xl sm:text-7xl font-black text-foreground mb-8 tracking-tighter italic uppercase">
             {t('pricing.title')}
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium leading-relaxed italic">
+          <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto font-medium leading-relaxed italic">
             {t('pricing.subtitle')}
           </p>
         </motion.div>
@@ -124,86 +127,86 @@ export function PricingSection({ onCtaClick }: PricingSectionProps) {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-8 items-center"
+          className="grid md:grid-cols-3 gap-8 items-stretch"
         >
           {plans.map((plan) => (
             <motion.div
               key={plan.id}
               variants={item as any}
-              whileHover={{ y: -10 }}
               className={cn(
-                "relative group flex flex-col h-full p-8 lg:p-10 rounded-[3.5rem] transition-all duration-500",
+                "relative group flex flex-col p-8 lg:p-10 rounded-[3.5rem] transition-all duration-500",
                 plan.popular
-                  ? "bg-primary border-4 border-secondary text-primary-foreground shadow-2xl shadow-primary/40 scale-105 z-20"
+                  ? "bg-primary border-4 border-secondary text-primary-foreground shadow-2xl scale-105 z-20"
                   : "bg-white/50 backdrop-blur-xl border border-white/60 text-foreground"
               )}
             >
               {plan.popular && (
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 px-6 py-2 bg-secondary text-white text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl shadow-2xl flex items-center gap-2">
+                <div className="absolute -top-6 left-1/2 -translate-x-1/2 px-6 py-2 bg-secondary text-white text-[10px] font-black uppercase tracking-[0.3em] rounded-2xl shadow-xl">
                   {t('pricing.popular')}
                 </div>
               )}
 
-              <div className="mb-10 text-center">
+              <div className="mb-10 flex flex-col items-center flex-grow-0">
                 <div className={cn(
-                  "w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-6",
-                  plan.popular ? "bg-white/10" : "bg-primary/10"
+                  "w-16 h-16 rounded-2xl flex items-center justify-center mb-6",
+                  plan.popular ? "bg-white/10" : "bg-primary/5"
                 )}>
-                  <plan.icon className={cn("w-7 h-7", plan.popular ? "text-secondary" : "text-primary")} />
+                  <plan.icon className={cn("w-8 h-8", plan.popular ? "text-secondary" : "text-primary")} />
                 </div>
                 <h3 className="text-2xl font-black italic uppercase tracking-tighter mb-4">
                   {t(plan.nameKey)}
                 </h3>
-                <div className="flex items-baseline justify-center gap-1">
+                <div className="flex items-baseline gap-1">
                   <span className="text-xs font-black uppercase tracking-widest opacity-50">EUR</span>
-                  <span className="text-5xl font-black italic tracking-tighter">{plan.price}</span>
+                  <span className="text-6xl font-black italic tracking-tighter leading-none">{plan.price}</span>
                   <span className={cn(
                     "text-xs font-black uppercase tracking-widest",
                     plan.popular ? "text-white/60" : "text-muted-foreground"
-                  )}>/
-                    {t('pricing.month')}</span>
+                  )}>/ {t('pricing.month')}</span>
                 </div>
                 <p className={cn(
-                  "text-sm font-medium italic mt-2 w-full",
+                  "text-sm font-medium italic mt-6 text-center leading-relaxed",
                   plan.popular ? "text-white/80" : "text-muted-foreground"
                 )}>
-                  {language === 'de' ? (plan as any).descDe : (plan as any).descEn}
+                  {language === 'de' ? plan.descDe : plan.descEn}
                 </p>
               </div>
 
               <div className={cn(
-                "h-px w-full mb-10 border-0",
+                "h-px w-full my-8 border-0",
                 plan.popular ? "bg-white/20" : "bg-border/50"
               )} />
 
-              <ul className="space-y-5 mb-12">
+              <ul className="space-y-4 mb-12 flex-grow">
                 {(language === 'de' ? plan.featuresDe : plan.featuresEn).map((feature, i) => (
-                  <li key={i} className="flex items-center gap-4">
+                  <li key={i} className="flex items-start gap-4">
                     <div className={cn(
-                      "w-5 h-5 rounded-full flex items-center justify-center shrink-0",
-                      plan.popular ? "bg-secondary" : "bg-success/20"
+                      "w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5",
+                      plan.popular ? "bg-secondary" : "bg-success/10"
                     )}>
                       <Check className={cn("w-3 h-3 text-white", !plan.popular && "text-success")} strokeWidth={4} />
                     </div>
-                    <span className="text-sm font-bold tracking-tight opacity-90">{feature}</span>
+                    <span className="text-sm font-bold tracking-tight opacity-90 leading-tight">{feature}</span>
                   </li>
                 ))}
               </ul>
 
-              <Magnetic strength={0.2} className="w-full mt-auto">
-                <Button
-                  onClick={onCtaClick}
-                  className={cn(
-                    "w-full h-16 rounded-2xl font-black uppercase tracking-[0.2em] shadow-xl transition-all active:scale-95 group relative overflow-hidden",
-                    plan.popular
-                      ? "bg-secondary text-white hover:bg-secondary/90 shadow-secondary/20"
-                      : "bg-primary text-primary-foreground hover:bg-primary/90 shadow-primary/10"
-                  )}
-                >
-                  <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-                  <span className="relative z-10">{t('pricing.cta')}</span>
-                </Button>
-              </Magnetic>
+              <div className="mt-auto">
+                <Magnetic strength={0.2} className="w-full">
+                  <Button
+                    onClick={onCtaClick}
+                    className={cn(
+                      "w-full h-18 py-8 rounded-2xl font-black uppercase tracking-[0.2em] shadow-xl transition-all active:scale-95 group relative overflow-hidden",
+                      plan.popular
+                        ? "bg-secondary text-white hover:bg-secondary/90 shadow-secondary/20 font-black"
+                        : "bg-primary text-primary-foreground font-black"
+                    )}
+                  >
+                    <div className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                    <span className="relative z-10">{t('pricing.cta')}</span>
+                  </Button>
+                </Magnetic>
+              </div>
             </motion.div>
           ))}
         </motion.div>
