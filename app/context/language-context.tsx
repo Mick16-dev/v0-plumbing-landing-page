@@ -22,6 +22,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.reviews': 'Reviews',
     'nav.howItWorks': 'How It Works',
     'nav.questions': 'Questions',
+    'nav.team': 'Team',
     'nav.contact': 'Contact',
 
     // Hero
@@ -213,6 +214,28 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.certifiedMeister': 'Certified Meister',
     'footer.emergency': '24/7 Emergency',
     'footer.copyright': '© 2026 Rohr-Blitz. Crafted for Master Excellence.',
+
+    // Team Page
+    'team.title': 'Human Expertise Behind the Tech',
+    'team.subtitle': 'Our Master Technicians are the heartbeat of Rohr-Blitz. Certified, disciplined, and ready to solve your plumbing disruption.',
+    'team.story.title': 'The Rohr-Blitz Story',
+    'team.story.tagline': 'From a Local Workshop to a Master-Led Network',
+    'team.story.desc': 'Founded in 2008 by Master Plumber Stefan Krause, Rohr-Blitz was born from a simple observation: plumbing is missing precision and transparency. Stefan envisioned a service where engineering-grade diagnostics meet traditional craftsmanship. Today, we are a network of 50+ hand-picked Master Technicians across Germany.',
+    'team.coverage.title': 'Our Service Hubs',
+    'team.coverage.desc': 'We currently deploy masters across Berlin, Munich, Hamburg, and Frankfurt, with local response teams available 24/7.',
+    'team.expertise.title': 'The 4 Pillars of Mastery',
+    'team.expertise.1': 'Certified Master Business',
+    'team.expertise.1.desc': 'Officially registered with the Handwerkskammer as a certified "Meisterbetrieb".',
+    'team.expertise.2': 'Regulated Qualifications',
+    'team.expertise.2.desc': 'Every technician holds valid state licenses and internal "Master Expert" certification.',
+    'team.expertise.3': 'Precision Assessment',
+    'team.expertise.3.desc': 'Our diagnosis isn\'t a guess; it\'s an engineering calculation validated by 20+ years of data.',
+    'team.expertise.4': 'Liability Guaranteed',
+    'team.expertise.4.desc': 'We stand behind every weld, every seal, and every repair with comprehensive insurance coverage.',
+    'team.member.role.master': 'Master Plumber',
+    'team.member.role.diagnostic': 'Diagnostic Specialist',
+    'team.member.role.emergency': 'Emergency Lead',
+    'team.member.role.install': 'Installation Expert',
   },
   de: {
     // Header
@@ -225,6 +248,7 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.reviews': 'Bewertungen',
     'nav.howItWorks': 'Ablauf',
     'nav.questions': 'Fragen',
+    'nav.team': 'Team',
     'nav.contact': 'Kontakt',
 
     // Hero
@@ -416,6 +440,28 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.certifiedMeister': 'Zertifizierter Meister',
     'footer.emergency': '24/7 Notfall',
     'footer.copyright': '© 2026 Rohr-Blitz. Für meisterhafte Exzellenz gefertigt.',
+
+    // Team Page
+    'team.title': 'Menschliche Expertise hinter der Technik',
+    'team.subtitle': 'Unsere Handwerksmeister sind das Herzstück von Rohr-Blitz. Zertifiziert, diszipliniert und bereit, Ihre Probleme zu lösen.',
+    'team.story.title': 'Die Rohr-Blitz Geschichte',
+    'team.story.tagline': 'Vom lokalen Betrieb zum meistergeführten Netzwerk',
+    'team.story.desc': 'Gegründet 2008 von Sanitärmeister Stefan Krause, entstand Rohr-Blitz aus einer einfachen Beobachtung: Dem Handwerk fehlte es an Präzision und Transparenz. Stefan visionierte einen Service, bei dem Ingenieursdiagnostik auf traditionelles Handwerk trifft. Heute sind wir ein Netzwerk von über 50 Handwerksmeistern in ganz Deutschland.',
+    'team.coverage.title': 'Unsere Einsatzgebiete',
+    'team.coverage.desc': 'Wir sind derzeit mit festen Teams in Berlin, München, Hamburg und Frankfurt vertreten, mit lokalen Notdiensten rund um die Uhr.',
+    'team.expertise.title': 'Die 4 Säulen der Meisterschaft',
+    'team.expertise.1': 'Zertifizierter Meisterbetrieb',
+    'team.expertise.1.desc': 'Offiziell bei der Handwerkskammer als zertifizierter Meisterbetrieb eingetragen.',
+    'team.expertise.2': 'Regulierte Qualifikationen',
+    'team.expertise.2.desc': 'Jeder Techniker verfügt über staatliche Zulassungen und unsere interne Experten-Zertifizierung.',
+    'team.expertise.3': 'Präzisions-Diagnostik',
+    'team.expertise.3.desc': 'Unsere Diagnose ist keine Schätzung, sondern eine validierte Ingenieursrechnung.',
+    'team.expertise.4': 'Haftungs-Garantie',
+    'team.expertise.4.desc': 'Wir stehen für jede Schweißnaht und jede Dichtung mit umfassendem Versicherungsschutz gerade.',
+    'team.member.role.master': 'Sanitär-Meister',
+    'team.member.role.diagnostic': 'Diagnose-Spezialist',
+    'team.member.role.emergency': 'Notfall-Leitung',
+    'team.member.role.install': 'Installations-Profi',
   }
 }
 
