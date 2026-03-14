@@ -1,7 +1,7 @@
 'use client'
 
 import { useLanguage } from '@/app/context/language-context'
-import { Clock, Award, Shield, BadgeCheck } from 'lucide-react'
+import { Clock, HardHat, Shield, ClipboardCheck } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
@@ -15,12 +15,12 @@ const trustItems = [
     color: 'text-amber-500'
   },
   {
-    icon: Award,
+    icon: HardHat,
     keyEn: 'Elite Technicians',
     keyDe: 'Elite-Techniker',
     stat: '50+',
     unit: '',
-    color: 'text-secondary'
+    color: 'text-slate-900'
   },
   {
     icon: Shield,
@@ -28,15 +28,15 @@ const trustItems = [
     keyDe: 'Vertrauensgarantie',
     stat: '100%',
     unit: '',
-    color: 'text-success'
+    color: 'text-red-600'
   },
   {
-    icon: BadgeCheck,
+    icon: ClipboardCheck,
     keyEn: 'Project Coverage',
     keyDe: 'Projektabdeckung',
     stat: '2M',
     unit: '€',
-    color: 'text-blue-500'
+    color: 'text-slate-900'
   }
 ]
 
