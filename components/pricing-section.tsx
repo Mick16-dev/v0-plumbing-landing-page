@@ -4,7 +4,7 @@ import { useLanguage } from '@/app/context/language-context'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Magnetic } from '@/components/ui/magnetic'
-import { Check, ShieldCheck, Clock, Crown } from 'lucide-react'
+import { Check, Wrench, Timer, HardHat } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const plans = [
@@ -12,7 +12,7 @@ const plans = [
     id: 'basic',
     nameKey: 'pricing.basic',
     price: 99,
-    icon: ShieldCheck,
+    icon: Wrench,
     featuresEn: [
       'Standard response (2-4h)',
       'Basic visuals check',
@@ -35,7 +35,7 @@ const plans = [
     id: 'standard',
     nameKey: 'pricing.standard',
     price: 199,
-    icon: Clock,
+    icon: Timer,
     featuresEn: [
       'Priority response (< 1h)',
       'Advanced master check',
@@ -60,7 +60,7 @@ const plans = [
     id: 'premium',
     nameKey: 'pricing.premium',
     price: 399,
-    icon: Crown,
+    icon: HardHat,
     featuresEn: [
       'Emergency priority (< 30m)',
       'Deep diagnostic + Video',

@@ -14,7 +14,7 @@ import {
   FileText,
   Timer,
   ArrowRight,
-  ShieldCheck,
+  Shield,
   Search
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -83,10 +83,7 @@ export function FeaturesSection({ onCtaClick }: FeaturesSectionProps) {
           viewport={{ once: true }}
           className="text-center mb-24"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-xs font-black rounded-xl uppercase tracking-[0.2em] mb-6">
-            <ShieldCheck className="w-4 h-4" />
-            {t('features.badge')}
-          </span>
+          {/* Badge removed to avoid AI/Badge vibe */}
           <h2 className="text-4xl sm:text-6xl font-black text-foreground mb-6 tracking-tighter italic uppercase underline decoration-secondary decoration-8 underline-offset-8">
             {t('features.title')}
           </h2>

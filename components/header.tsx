@@ -39,9 +39,9 @@ export function Header({ onEmergencyClick }: HeaderProps) {
           <nav className="hidden lg:flex items-center gap-1 mx-4">
             {[
               { key: 'nav.overview', href: '/' },
-              { key: 'nav.services', href: '/#services' },
-              { key: 'nav.pricing', href: '/#pricing' },
-              { key: 'nav.contact', href: '/#footer' }
+              { key: 'nav.services', href: '/services' },
+              { key: 'nav.pricing', href: '/pricing' },
+              { key: 'nav.contact', href: '/contact' }
             ].map((item) => (
               <a
                 key={item.key}

@@ -107,11 +107,11 @@ const translations: Record<Language, Record<string, string>> = {
     'features.painPoint': 'The Problem',
     'features.solution': 'Our Solution',
 
-    // Master Diagnosis Pillar
-    'features.expert-diagnosis.title': 'Master Visual Diagnosis',
-    'features.expert-diagnosis.tagline': 'Instant issue identification with repair guidance',
+    // Master Review Pillar
+    'features.expert-diagnosis.title': 'Master Expert Review',
+    'features.expert-diagnosis.tagline': 'Certified issue identification with repair guidance',
     'features.expert-diagnosis.pain': 'Traditional plumbing inspections require scheduling, waiting for a technician, and paying for diagnostic visits just to understand the problem.',
-    'features.expert-diagnosis.solution': 'Our master technicians analyze your photo in seconds, identify the exact issue, and provide a detailed breakdown of required repairs, tools, and parts.',
+    'features.expert-diagnosis.solution': 'Our master technicians review your information, identify the exact issue, and provide a detailed breakdown of required repairs, tools, and parts.',
     'features.expert-diagnosis.benefit1': 'Identifies 50+ common plumbing issues from a single photo',
     'features.expert-diagnosis.benefit2': 'Lists exact parts needed (with model numbers) so you can price-compare',
     'features.expert-diagnosis.benefit3': 'Provides difficulty rating so you know if it\'s DIY or requires a pro',
@@ -186,9 +186,9 @@ const translations: Record<Language, Record<string, string>> = {
     // Hero Additional
     'hero.verifiedExperts': 'Verified Experts',
     'hero.response': '15m Response',
-    'hero.calculate': 'Calculate Assessment',
-    'hero.masterDiagnostic': 'Technical Assessment',
-    'hero.analyzing': 'Calculating requirements...',
+    'hero.calculate': 'Start Technical Review',
+    'hero.masterDiagnostic': 'Master Technician Review',
+    'hero.analyzing': 'Expert is reviewing details...',
     'hero.encrypted': 'Encrypted',
     'hero.gdpr': 'GDPR Ready',
     'hero.masterEstimate': 'Master Estimate',
@@ -310,11 +310,11 @@ const translations: Record<Language, Record<string, string>> = {
     'features.painPoint': 'Das Problem',
     'features.solution': 'Unsere Lösung',
 
-    // Master Diagnosis Pillar
-    'features.expert-diagnosis.title': 'Visuelle Meister-Diagnose',
-    'features.expert-diagnosis.tagline': 'Sofortige Problemerkennung mit Reparaturanleitung',
+    // Master Review Pillar
+    'features.expert-diagnosis.title': 'Meisterliche Prüfung',
+    'features.expert-diagnosis.tagline': 'Zertifizierte Problemerkennung mit Reparaturanleitung',
     'features.expert-diagnosis.pain': 'Herkömmliche Inspektionen erfordern Terminvereinbarung, Warten und Bezahlung nur für die Diagnose.',
-    'features.expert-diagnosis.solution': 'Unsere Meister analysieren Ihr Foto in Sekunden, identifizieren das Problem und liefern eine detaillierte Aufschlüsselung der Reparatur.',
+    'features.expert-diagnosis.solution': 'Unsere Meister prüfen Ihre Angaben, identifizieren das Problem und liefern eine detaillierte Aufschlüsselung der Reparatur.',
     'features.expert-diagnosis.benefit1': 'Erkennt 50+ häufige Sanitärprobleme aus einem Foto',
     'features.expert-diagnosis.benefit2': 'Listet benötigte Teile mit Modellnummern zum Preisvergleich',
     'features.expert-diagnosis.benefit3': 'Gibt Schwierigkeitsgrad an: DIY oder Profi erforderlich',
@@ -389,9 +389,9 @@ const translations: Record<Language, Record<string, string>> = {
     // Hero Additional
     'hero.verifiedExperts': 'Verifizierte Experten',
     'hero.response': '15 Min. Reaktionszeit',
-    'hero.calculate': 'Einschätzung berechnen',
-    'hero.masterDiagnostic': 'Technische Analyse',
-    'hero.analyzing': 'Berechne Anforderungen...',
+    'hero.calculate': 'Technische Prüfung starten',
+    'hero.masterDiagnostic': 'Meisterliche Prüfung',
+    'hero.analyzing': 'Experte prüft Details...',
     'hero.encrypted': 'Verschlüsselt',
     'hero.gdpr': 'DSGVO-konform',
     'hero.masterEstimate': 'Meister-Schätzung',

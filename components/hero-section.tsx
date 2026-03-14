@@ -1,11 +1,12 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import { Upload, Droplet, CircleOff, Wrench, Plus, CheckCircle, Clock, ShieldCheck, MapPin, ArrowRight } from 'lucide-react'
+import { Upload, Droplet, CircleOff, Wrench, Plus, CheckCircle, Clock, MapPin, ArrowRight, HardHat } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '@/app/context/language-context'
 import { Button } from '@/components/ui/button'
 import { Magnetic } from '@/components/ui/magnetic'
+import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -134,10 +135,10 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
   }
 
   const issueCategories: { type: IssueCategory; icon: React.ReactNode; color: string }[] = [
-    { type: 'leaking', icon: <Droplet className="w-8 h-8" />, color: 'text-blue-500' },
-    { type: 'clogged', icon: <CircleOff className="w-8 h-8" />, color: 'text-secondary' },
-    { type: 'broken', icon: <Wrench className="w-8 h-8" />, color: 'text-destructive' },
-    { type: 'installation', icon: <Plus className="w-8 h-8" />, color: 'text-success' }
+    { type: 'leaking', icon: <Droplet className="w-8 h-8" />, color: 'text-blue-600' },
+    { type: 'clogged', icon: <CircleOff className="w-8 h-8" />, color: 'text-slate-600' },
+    { type: 'broken', icon: <Wrench className="w-8 h-8" />, color: 'text-red-600' },
+    { type: 'installation', icon: <Plus className="w-8 h-8" />, color: 'text-green-600' }
   ]
 
   const severityLabels = [
@@ -165,6 +166,7 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
           transition={{ duration: 0.5 }}
           className="space-y-6"
         >
+          {/* Section badge removed to avoid AI/Badge vibe */}
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight tracking-tight max-w-4xl mx-auto uppercase">
             {t('hero.title')}
           </h1>
@@ -180,7 +182,7 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
               className="bg-slate-900 text-white hover:bg-slate-800 font-bold uppercase tracking-wider h-14 px-8 rounded-lg text-base shadow-lg transition-all"
             >
               <span className="flex items-center gap-2">
-                {t('funnel.cta')}
+                {t('hero.calculate')}
                 <ArrowRight className="w-5 h-5" />
               </span>
             </Button>
@@ -190,7 +192,7 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
               asChild
               className="h-14 px-8 rounded-lg font-bold uppercase tracking-wider border-slate-200"
             >
-              <a href="#services">{t('nav.services')}</a>
+              <Link href="/services">{t('nav.services')}</Link>
             </Button>
           </div>
         </motion.div>
@@ -231,7 +233,7 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
                       </span>
                     </div>
                   </motion.div>
-                ) : isSubmitting ? (
+                 ) : isSubmitting ? (
                   <motion.div
                     key="submitting"
                     initial={{ opacity: 0 }}
@@ -239,7 +241,10 @@ export function HeroSection({ onCtaClick }: HeroSectionProps) {
                     exit={{ opacity: 0 }}
                     className="py-12 flex flex-col items-center justify-center text-center"
                   >
-                    <div className="w-16 h-16 border-4 border-slate-900 border-t-transparent rounded-full animate-spin mb-6" />
+                    <div className="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center mb-6 relative">
+                      <HardHat className="w-8 h-8 text-slate-900 animate-bounce" />
+                      <div className="absolute inset-0 border-2 border-slate-900 border-t-transparent rounded-2xl animate-spin" />
+                    </div>
                     <h3 className="text-xl font-bold text-slate-900 uppercase tracking-tight mb-1">{t('hero.masterDiagnostic')}</h3>
                     <p className="text-slate-500 text-xs font-bold uppercase tracking-wider">{t('hero.analyzing')}</p>
                   </motion.div>

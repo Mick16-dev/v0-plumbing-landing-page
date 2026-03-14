@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useLanguage } from '@/app/context/language-context'
-import { Award, ShieldCheck, GraduationCap, Microscope } from 'lucide-react'
+import { HardHat, Wrench, DraftingCompass, ClipboardCheck } from 'lucide-react'
 import Image from 'next/image'
 
 const experts = [
@@ -55,13 +55,13 @@ export function MasterExpertSection() {
 
             <div className="grid sm:grid-cols-2 gap-4">
               {[
-                { icon: Award, labelDe: 'Zertifizierter Meisterbetrieb', labelEn: 'Certified Master Business' },
-                { icon: GraduationCap, labelDe: 'Regulierte Qualifikationen', labelEn: 'Regulated Qualifications' },
-                { icon: Microscope, labelDe: 'Präzisions-Diagnostik', labelEn: 'Precision Assessment' },
-                { icon: ShieldCheck, labelDe: 'Haftungs-Garantie', labelEn: 'Liability Guaranteed' },
+                { icon: HardHat, labelDe: 'Zertifizierter Meisterbetrieb', labelEn: 'Certified Master Business' },
+                { icon: Wrench, labelDe: 'Regulierte Qualifikationen', labelEn: 'Regulated Qualifications' },
+                { icon: DraftingCompass, labelDe: 'Präzisions-Diagnostik', labelEn: 'Precision Assessment' },
+                { icon: ClipboardCheck, labelDe: 'Haftungs-Garantie', labelEn: 'Liability Guaranteed' },
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 bg-slate-50 p-4 rounded-xl border border-slate-100">
-                  <item.icon className="w-5 h-5 text-slate-900" />
+                <div key={i} className="flex items-center gap-3 bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                  <item.icon className="w-5 h-5 text-red-600" />
                   <span className="text-xs font-bold uppercase tracking-wider text-slate-900">{language === 'de' ? item.labelDe : item.labelEn}</span>
                 </div>
               ))}
